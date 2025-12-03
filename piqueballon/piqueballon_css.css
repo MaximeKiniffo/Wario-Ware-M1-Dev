@@ -14,7 +14,7 @@ body {
     background-color: #FFF1D2;
     margin: 0 auto;
 
-    position: relative;      /* IMPORTANT pour centrer en absolu */
+    position: relative;
     overflow: hidden;
 
     border: 20px solid #B47B41;
@@ -30,16 +30,16 @@ body {
     background-repeat: no-repeat;
     background-position: center;
 
-    width: 300px;          /* 🔥 adapte cette valeur à ton PNG */
-    height: 100px;         /* 🔥 idem */
+    width: 300px;
+    height: 100px;
 
-    display: flex;         /* permet de centrer le texte */
+    display: flex;
     justify-content: center;
     align-items: center;
 
     color: #FFF1D2;
-    font-size: 2rem;       /* optionnel : texte plus grand */
-    font-weight: bold;     /* optionnel */
+    font-size: 2rem;
+    font-weight: bold;
 
     margin: 0 auto;
     border-radius: 10px;
@@ -49,26 +49,21 @@ body {
 .balloon-to-pop {
     width: 70px;
     height: 95px;
-    border-radius: 50% 50% 45% 45%;  /* forme un peu plus ballon */
+    border-radius: 50% 50% 45% 45%;
     position: absolute;
 
-    /* Petit dégradé pour l'effet volume */
     background: radial-gradient(circle at 30% 20%, #ffffffaa 0, transparent 40%),
                 var(--balloon-color, red);
 
-    /* Ombre portée pour le relief */
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.25);
 
-    /* Légère animation flottante */
     animation: float 2s ease-in-out infinite alternate;
 }
 
-/* Couleur spéciale pour le ballon à éclater */
 .balloon-to-pop {
     --balloon-color: red;
 }
 
-/* Si tu veux des ballons verts par défaut pour les autres */
 .balloon {
     --balloon-color: #6FD36F;
 }
@@ -102,10 +97,10 @@ body {
     margin: 0;
 
     position: absolute;
-    inset: 0;               /* équivaut à top:0; right:0; bottom:0; left:0; */
+    inset: 0;
     width: 300px;
     height: 120px;
-    margin: auto;           /* centre le bloc dans .balloons-area */
+    margin: auto;
 
     background-image: url("resources/button_red.png");
     background-size: 100% 100%;
@@ -142,21 +137,21 @@ body {
 }
 
 .instruction {
-    background-image: url("resources/button_red.png"); /* ton fichier PNG */
-    background-size: contain;   /* garde les proportions */
+    background-image: url("resources/button_red.png");
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
 
     position: absolute;         
     top: 50%;                   
     left: 50%;                  
-    transform: translate(-50%, -50%); /* centre parfait */
+    transform: translate(-50%, -50%);
 
     font-size: 3rem;
     font-weight: bold;
     color: #FFF1D2;
     text-align: center;
-    z-index: 10; /* au-dessus de tout */
+    z-index: 10;
 }
 
 .game-place {

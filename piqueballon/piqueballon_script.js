@@ -1,11 +1,8 @@
-// ----- VARIABLES GLOBALES -----
 let balloons = [];
 let correctBalloon = null;
 let clickTimer = null;
 
-// ----- INITIALISATION DU JEU -----
 function startGame() {
-    // préparation du jeu
     const instruction = document.querySelector(".instruction");
     
     setTimeout(() => {
@@ -38,9 +35,7 @@ function createBalloonToPop(container, maxX, maxY){
     container.appendChild(balloonToPop); 
 }
 
-// ----- CRÉATION DES BALLONS -----
 function createBalloons() {
-    // génération des ballons
     const container = document.querySelector(".balloons-area");
     const maxX = container.offsetWidth - 60;  
     const maxY = container.offsetHeight - 80;
@@ -54,7 +49,6 @@ function createBalloons() {
     
 }
 
-// ----- GÉRER LE CLIC SUR UN BALLON -----
 function handleBadBalloonClick(event) {
     clearTimeout(clickTimer);
     endGame(false);
@@ -65,7 +59,6 @@ function handleGoodBalloonClick(event){
     endGame(true);
 }
 
-// ----- FIN DE PARTIE -----
 function endGame(win) {
     if(win) {
         winTitle = document.querySelector(".win-title");
@@ -78,7 +71,6 @@ function endGame(win) {
     balloons.forEach(b => b.remove());
 }
 
-// ----- LANCEMENT -----
 window.onload = () => {
     startGame();
     
