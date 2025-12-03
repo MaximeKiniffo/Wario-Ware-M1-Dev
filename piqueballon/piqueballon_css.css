@@ -11,15 +11,15 @@ body {
 .balloons-area {
     width: 60%;
     height: 50vh;
-    background-color: #FFF1D2;
-    margin: 0 auto;
 
+    background-image: url("resources/background_text.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    margin: 0 auto;
     position: relative;
     overflow: hidden;
-
-    border: 20px solid #B47B41;
-    outline: 5px solid #6D4B27;
-    border-radius: 10px;
 }
 
 
