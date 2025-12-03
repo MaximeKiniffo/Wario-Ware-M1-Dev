@@ -1,5 +1,5 @@
 .game-container {
-    background-color: orange;
+    background-color: #DAB289;
     width: 80%;
     height: 70vh;
 }
@@ -7,6 +7,54 @@
 .balloons-area {
     width: 60%;
     height: 50vh;
-    background-color: aquamarine;
+    background-color: #FFF1D2;
     margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    border-width: 20px;
+    border-color: #B47B41;
+    border-style: solid;
+    outline-width: 5px;
+    outline-color: #6D4B27;
+    outline-style: solid;
+
+    border-radius: 10px;
+}
+
+.title-game {
+    background-color: #CF5E53;
+
+    border-color: #EC6A5F;
+    border-width: 20px;
+    border-style: solid;
+
+    outline-color: #8E3F38;
+    outline-width: 5px;
+    outline-style: solid;
+
+    color: #FFF1D2;
+    text-align: center;
+    font-family: 'Gowun Batang';
+
+    width: 500px;
+    margin: 0 auto;
+    
+    border-radius: 10px;
+
+}
+
+.balloon {
+    width: 60px;
+    height: 80px;
+    background-color: greenyellow; /* sera changé par JS si tu veux */
+    border-radius: 50%;
+    position: absolute; /* pour pouvoir le placer où tu veux */
+}
+
+.balloon-to-pop{
+    width: 60px;
+    height: 80px;
+    background-color: red; /* sera changé par JS si tu veux */
+    border-radius: 50%;
+    position: absolute;
 }
