@@ -4,35 +4,143 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inspecteur</title>
-</head>
-<body style="margin: 0; padding: 0; background-color: #222; color: #fff; font-family: 'Courier New', Courier, monospace; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; user-select: none;">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
 
-    <div id="game-container" style="position: relative; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
-        <h1 style="font-size: 4rem; color: #ff0055; text-transform: uppercase; text-shadow: 4px 4px #000; margin: 0; z-index: 10; pointer-events: none;">INSPECTE!</h1>
-        <p style="font-size: 1.5rem; color: #00ffcc; font-weight: bold; pointer-events: none;">Où est le bug?</p>
-        
-        <button id="hidden-bug" style="
+    <style>
+        /* CSS de Coleen */
+        .gowun-batang-regular {
+            font-family: "Gowun Batang", serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .gowun-batang-bold {
+            font-family: "Gowun Batang", serif;
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        /* Palette Colors based on your image */
+        :root {
+            --col-cream: #FDF5E6; 
+            --col-red: #D06A63;    
+            --col-dark-red: #7B3F39;
+            --col-salmon: #E57368;  
+            --col-coffee: #5D402B;  
+            --col-tan: #A98356;     
+        }
+
+        body {
+            margin: 0; 
+            padding: 0; 
+            background-color: var(--col-coffee); /* Couleur de fond */
+            color: var(--col-cream); 
+            font-family: "Gowun Batang", serif;
+            overflow: hidden; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
+            user-select: none;
+        }
+
+        #game-container {
+            position: relative; 
+            width: 100%; 
+            height: 100%; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 4rem; 
+            color: var(--col-red); 
+            text-transform: uppercase; 
+            margin: 0; 
+            z-index: 10; 
+            pointer-events: none;
+        }
+
+        p {
+            font-size: 1.5rem; 
+            color: var(--col-tan); 
+            font-weight: bold; 
+            pointer-events: none;
+            margin-top: 10px;
+        }
+
+        #hidden-bug {
             position: absolute;
             width: 80px;
             height: 80px;
-            background-color: #ffe600; 
-            border: 4px solid #000;
+            background-color: var(--col-cream); 
+            color: var(--col-coffee);
+            border: 4px solid var(--col-dark-red);
             border-radius: 50%;
             display: none;
             cursor: crosshair;
-            box-shadow: 0 0 20px #ffe600;
+            box-shadow: 0 0 20px var(--col-salmon);
             font-size: 50px;
             text-align: center;
             line-height: 80px;
             padding: 0;
             z-index: 100;
-        ">🐛</button>
+        }
+
+        #timer-bar {
+            position: absolute; 
+            bottom: 0; 
+            left: 0; 
+            height: 20px; 
+            background-color: var(--col-red); 
+            width: 100%; 
+            transition: width 0.1s linear, background-color 0.5s ease;
+        }
+
+        .screen-overlay {
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            display: none; 
+            justify-content: center; 
+            align-items: center; 
+            font-size: 5rem; 
+            font-weight: 700; 
+            z-index: 200; 
+            font-family: "Gowun Batang", serif;
+        }
+
+        #win-screen {
+            background: rgba(169, 131, 86, 0.9); 
+            color: var(--col-cream);
+        }
+
+        #lose-screen {
+            background: rgba(93, 64, 43, 0.95); 
+            color: var(--col-red);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="game-container">
+        <h1 class="gowun-batang-bold">INSPECTE!</h1>
+        <p class="gowun-batang-regular">Où est le bug?</p>
+        
+        <button id="hidden-bug">🐛</button>
     </div>
+    <div id="timer-bar"></div>
 
-    <div id="timer-bar" style="position: absolute; bottom: 0; left: 0; height: 20px; background-color: #ff0055; width: 100%; transition: width 0.1s linear;"></div>
-
-    <div id="win-screen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none; justify-content: center; align-items: center; font-size: 5rem; font-weight: 900; z-index: 200; background: rgba(0, 255, 0, 0.8); color: white;">TROUVÉ</div>
-    <div id="lose-screen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none; justify-content: center; align-items: center; font-size: 5rem; font-weight: 900; z-index: 200; background: rgba(0, 0, 0, 0.9); color: red;">PERDU</div>
+    <div id="win-screen" class="screen-overlay">TROUVÉ</div>
+    <div id="lose-screen" class="screen-overlay">PERDU</div>
 
     <script src="jeu3.js"></script>
 </body>
