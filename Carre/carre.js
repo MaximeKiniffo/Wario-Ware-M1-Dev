@@ -2,9 +2,9 @@
 
 // Carre/carre.js — comportement de drag & drop et positionnement aléatoire
 (function () {
-  const box = document.querySelector('.x');
-  const container = document.querySelector('.c');
-  const target = document.querySelector('.y');
+  const box = document.querySelector('.draggable');
+  const container = document.querySelector('.board');
+  const target = document.querySelector('.dropzone');
   if (!box || !container || !target) return;
 
   // State
@@ -63,8 +63,9 @@
   function onPointerDown(e) {
     // only primary button for mouse
     if (e.pointerType === 'mouse' && e.button !== 0) return;
-    isDragging = true;
-    box.classList.add('d');
+  isDragging = true;
+  // add an explicit class name for dragging state
+  box.classList.add('dragging');
     try { box.setPointerCapture && box.setPointerCapture(e.pointerId); } catch (err) {}
 
     const r = box.getBoundingClientRect();
@@ -89,7 +90,7 @@
   function onPointerUp(e) {
     if (!isDragging) return;
     isDragging = false;
-    box.classList.remove('d');
+  box.classList.remove('dragging');
     try { box.releasePointerCapture && box.releasePointerCapture(e.pointerId); } catch (err) {}
 
     // If released fully inside target, add class .inside
