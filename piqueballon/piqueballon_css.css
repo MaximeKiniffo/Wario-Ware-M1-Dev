@@ -1,0 +1,12 @@
+.game-container {
+    background-color: orange;
+    width: 80%;
+    height: 70vh;
+}
+
+.balloons-area {
+    width: 60%;
+    height: 50vh;
+    background-color: aquamarine;
+    margin: 0 auto;
+}
