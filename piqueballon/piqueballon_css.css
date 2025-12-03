@@ -45,40 +45,74 @@ body {
     border-radius: 10px;
 }
 
-.balloon {
-    width: 60px;
-    height: 80px;
-    background-color: greenyellow; /* sera changé par JS si tu veux */
-    border-radius: 50%;
-    position: absolute; /* pour pouvoir le placer où tu veux */
+.balloon,
+.balloon-to-pop {
+    width: 70px;
+    height: 95px;
+    border-radius: 50% 50% 45% 45%;  /* forme un peu plus ballon */
+    position: absolute;
+
+    /* Petit dégradé pour l'effet volume */
+    background: radial-gradient(circle at 30% 20%, #ffffffaa 0, transparent 40%),
+                var(--balloon-color, red);
+
+    /* Ombre portée pour le relief */
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.25);
+
+    /* Légère animation flottante */
+    animation: float 2s ease-in-out infinite alternate;
 }
 
-.balloon-to-pop{
-    width: 60px;
-    height: 80px;
-    background-color: red; /* sera changé par JS si tu veux */
-    border-radius: 50%;
+/* Couleur spéciale pour le ballon à éclater */
+.balloon-to-pop {
+    --balloon-color: red;
+}
+
+/* Si tu veux des ballons verts par défaut pour les autres */
+.balloon {
+    --balloon-color: #6FD36F;
+}
+
+/* Petit "nœud" en bas du ballon */
+.balloon::after,
+.balloon-to-pop::after {
+    content: "";
     position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 10px;
+    background-color: inherit;
+    border-radius: 50%;
+}
+
+/* Animation flottante */
+@keyframes float {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-10px);
+    }
 }
 
 .win-title,
 .lose-title {
-    margin: 0; /* enlève les marges par défaut des h1 */
+    margin: 0;
 
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);  /* centre parfait */
+    inset: 0;               /* équivaut à top:0; right:0; bottom:0; left:0; */
+    width: 300px;
+    height: 120px;
+    margin: auto;           /* centre le bloc dans .balloons-area */
 
     background-image: url("resources/button_red.png");
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: center;
 
-    width: 300px;   /* adapte à ton PNG */
-    height: 120px;
-
-    display: flex;              /* texte centré dans le bouton */
+    display: flex;
     justify-content: center;
     align-items: center;
 

@@ -49,7 +49,7 @@ function createBalloons() {
     }
     createBalloonToPop(container, maxX, maxY);
     clickTimer = setTimeout(() => {
-        endGame(false); // temps écoulé = perdu
+        endGame(false);
     }, 1500);
     
 }
@@ -68,19 +68,14 @@ function handleGoodBalloonClick(event){
 // ----- FIN DE PARTIE -----
 function endGame(win) {
     if(win) {
-        winTitle = document.createElement("h1");
-        winTitle.textContent = "GAGNÉ !";
-        winTitle.classList.add("win-title");
-        document.querySelector(".game-container").appendChild(winTitle);
+        winTitle = document.querySelector(".win-title");
+        winTitle.classList.remove("hidden");
     } else {
-        loseTitle = document.createElement("h1");
-        loseTitle.textContent = "PERDU !"
-        loseTitle.classList.add("lose-title");
-        document.querySelector(".game-container").appendChild(loseTitle);
+        loseTitle = document.querySelector(".lose-title");
+        loseTitle.classList.remove("hidden");
     }
-    document.querySelector(".balloons-area").innerHTML = "";
-    
-
+    const balloons = document.querySelectorAll(".balloon, .balloon-to-pop");
+    balloons.forEach(b => b.remove());
 }
 
 // ----- LANCEMENT -----
