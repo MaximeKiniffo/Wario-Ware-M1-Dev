@@ -13,37 +13,36 @@ body {
     height: 50vh;
     background-color: #FFF1D2;
     margin: 0 auto;
-    position: relative;
-    overflow: hidden;
-    border-width: 20px;
-    border-color: #B47B41;
-    border-style: solid;
-    outline-width: 5px;
-    outline-color: #6D4B27;
-    outline-style: solid;
 
+    position: relative;      /* IMPORTANT pour centrer en absolu */
+    overflow: hidden;
+
+    border: 20px solid #B47B41;
+    outline: 5px solid #6D4B27;
     border-radius: 10px;
 }
 
+
 .title-game {
-    background-color: #CF5E53;
 
-    border-color: #EC6A5F;
-    border-width: 20px;
-    border-style: solid;
+    background-image: url("resources/button_red.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 
-    outline-color: #8E3F38;
-    outline-width: 5px;
-    outline-style: solid;
+    width: 300px;          /* 🔥 adapte cette valeur à ton PNG */
+    height: 100px;         /* 🔥 idem */
+
+    display: flex;         /* permet de centrer le texte */
+    justify-content: center;
+    align-items: center;
 
     color: #FFF1D2;
-    text-align: center;
+    font-size: 2rem;       /* optionnel : texte plus grand */
+    font-weight: bold;     /* optionnel */
 
-    width: 500px;
     margin: 0 auto;
-    
     border-radius: 10px;
-
 }
 
 .balloon {
@@ -64,30 +63,33 @@ body {
 
 .win-title,
 .lose-title {
+    margin: 0; /* enlève les marges par défaut des h1 */
+
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    
-    text-align: center;
-    z-index: 20; /* au-dessus des ballons */
-    padding: 20px 40px;
-    border-radius: 12px;
+    transform: translate(-50%, -50%);  /* centre parfait */
+
+    background-image: url("resources/button_red.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    width: 300px;   /* adapte à ton PNG */
+    height: 120px;
+
+    display: flex;              /* texte centré dans le bouton */
+    justify-content: center;
+    align-items: center;
+
+    color: #FFF1D2;
     font-size: 3rem;
     font-weight: bold;
+    text-align: center;
+
+    z-index: 20;
 }
 
-.lose-title {
-    background-color: #EC6A5F; /* ton rouge */
-    color: #FFF1D2;            /* crème */
-    border: 4px solid #8E3F38; /* marron foncé */
-}
-
-.win-title {
-    background-color: #FFF1D2;
-    color: #6D4B27;
-    border: 4px solid #6D4B27;
-}
 
 .gowun-batang-regular {
     font-family: "Gowun Batang", serif;
@@ -106,6 +108,11 @@ body {
 }
 
 .instruction {
+    background-image: url("resources/button_red.png"); /* ton fichier PNG */
+    background-size: contain;   /* garde les proportions */
+    background-repeat: no-repeat;
+    background-position: center;
+
     position: absolute;         
     top: 50%;                   
     left: 50%;                  
@@ -113,11 +120,14 @@ body {
 
     font-size: 3rem;
     font-weight: bold;
-    color: #6D4B27;
-    background-color: #FFF1D2;
-    padding: 20px 40px;
-    border: 4px solid #6D4B27;
-    border-radius: 12px;
+    color: #FFF1D2;
     text-align: center;
     z-index: 10; /* au-dessus de tout */
+}
+
+.game-place {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
