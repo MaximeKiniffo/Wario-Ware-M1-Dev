@@ -57,7 +57,20 @@ function handleGoodBalloonClick(event){
 
 // ----- FIN DE PARTIE -----
 function endGame(win) {
-    // victoire ou défaite
+    if(win) {
+        winTitle = document.createElement("h1");
+        winTitle.textContent = "GAGNÉ !";
+        winTitle.classList.add("win-title");
+        document.querySelector(".game-container").appendChild(winTitle);
+    } else {
+        loseTitle = document.createElement("h1");
+        loseTitle.textContent = "PERDU !"
+        loseTitle.classList.add("lose-title");
+        document.querySelector(".game-container").appendChild(loseTitle);
+    }
+    document.querySelector(".balloons-area").innerHTML = "";
+    
+
 }
 
 // ----- LANCEMENT -----

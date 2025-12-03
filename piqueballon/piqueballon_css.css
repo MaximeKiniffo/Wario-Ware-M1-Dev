@@ -1,3 +1,7 @@
+body {
+    font-family: "Gowun Batang", serif;
+}
+
 .game-container {
     background-color: #DAB289;
     width: 80%;
@@ -34,7 +38,6 @@
 
     color: #FFF1D2;
     text-align: center;
-    font-family: 'Gowun Batang';
 
     width: 500px;
     margin: 0 auto;
@@ -57,4 +60,32 @@
     background-color: red; /* sera changé par JS si tu veux */
     border-radius: 50%;
     position: absolute;
+}
+
+.win-title {
+    font-size: 3rem;
+    color: #EC6A5F;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+
+}
+.lose-title {
+    font-size: 3rem;
+    color: #EC6A5F;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.gowun-batang-regular {
+    font-family: "Gowun Batang", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+  
+.gowun-batang-bold {
+    font-family: "Gowun Batang", serif;
+    font-weight: 700;
+    font-style: normal;
 }
