@@ -1,64 +1,125 @@
+// corrigé avec chat GPT 
 
-(function(){const b = document.querySelector('.x');
-  const c = document.querySelector('.c');
-  if (!b || !c) return;let d = false;let oX = 0;let oY = 0;
-  function rand(min, max){ return Math.floor(Math.random() * (max - min + 1)) + min; }
-  function rectsOverlap(a,b){
+// Carre/carre.js — comportement de drag & drop et positionnement aléatoire
+(function () {
+  const box = document.querySelector('.x');
+  const container = document.querySelector('.c');
+  const target = document.querySelector('.y');
+  if (!box || !container || !target) return;
+
+  // State
+  let isDragging = false;
+  let offsetX = 0;
+  let offsetY = 0;
+
+  // Helpers
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+  function rectsOverlap(a, b) {
     return !(a.right <= b.left || a.left >= b.right || a.bottom <= b.top || a.top >= b.bottom);
-  }function pR(el){
-    const contW = c.clientWidth; const contH = c.clientHeight;
-    const w = el.offsetWidth; const h = el.offsetHeight;
+  }
+
+  function isFullyInside(innerRect, outerRect) {
+    return (
+      innerRect.left >= outerRect.left &&
+      innerRect.right <= outerRect.right &&
+      innerRect.top >= outerRect.top &&
+      innerRect.bottom <= outerRect.bottom
+    );
+  }
+
+  // Place an element at a random position inside the container (absolute coords)
+  function placeRandomly(el) {
+    const contW = container.clientWidth;
+    const contH = container.clientHeight;
+    const w = el.offsetWidth;
+    const h = el.offsetHeight;
     const maxX = Math.max(0, contW - w);
     const maxY = Math.max(0, contH - h);
-    const x = rand(0, maxX);const y = rand(0, maxY);
+    const x = rand(0, maxX);
+    const y = rand(0, maxY);
     el.style.position = 'absolute';
-    el.style.left = x + 'px'; el.style.top = y + 'px'; el.style.margin = '0';
-  }function pBNOl(a,b){
-    pR(a);let s = 0;
-    while(s < 30){ pR(b);
-      const aR = a.getBoundingClientRect();const bR = b.getBoundingClientRect();
-      if (!rectsOverlap(aR, bR)) return; s++;
-    }}setTimeout(()=>{
-    const yEl = document.querySelector('.y');if (yEl) pBNOl(b, yEl);
-  }, 10);
-  function clamp(v, a, b){ return Math.max(a, Math.min(b, v)); }
-  function oPD(e){ if (e.pointerType === 'mouse' && e.button !== 0) return;
-    d = true; b.classList.add('d');
-    b.setPointerCapture && b.setPointerCapture(e.pointerId);
-    const r = b.getBoundingClientRect();
-    oX = e.clientX - r.left;oY = e.clientY - r.top;
-  }function oPM(e){
-    if (!d) return;const cR = c.getBoundingClientRect();const bR = b.getBoundingClientRect();
-    const x = e.clientX - cR.left - oX;const y = e.clientY - cR.top - oY;
-    const pX = 0;const pY = 0;const gX = cR.width - bR.width; const gY = cR.height - bR.height;
-    b.style.left = clamp(x, pX, gX) + 'px'; b.style.top  = clamp(y, pY, gY) + 'px';
-  }function iFI(innerRect, outerRect){
-    return innerRect.left >= outerRect.left &&
-           innerRect.right <= outerRect.right &&
-           innerRect.top >= outerRect.top &&
-           innerRect.bottom <= outerRect.bottom;
-  }function oPU(e){
-    if (!d) return; d = false; b.classList.remove('d');
-    try{ b.releasePointerCapture && b.releasePointerCapture(e.pointerId); }catch(ex){}
-    const bR = b.getBoundingClientRect();
-    const yEl = document.querySelector('.y');
-    if (yEl){
-      const yR = yEl.getBoundingClientRect();
-      if (iFI(bR, yR)){
-        b.classList.add('inside');
-        const z = window.getComputedStyle(b);
-        if (z.backgroundColor === 'rgba(0, 0, 0, 0)' || z.backgroundColor === 'transparent' || z.backgroundColor === 'rgb(231, 76, 60)'){
-          b.style.backgroundColor = 'limegreen';
-        }
-      } else {
-        b.classList.remove('inside');
-        if (b.style.backgroundColor) b.style.backgroundColor = '';
-      }
+    el.style.left = x + 'px';
+    el.style.top = y + 'px';
+    el.style.margin = '0';
+  }
+
+  // Try to place two elements without overlapping (best-effort)
+  function placeBothNonOverlapping(a, b) {
+    placeRandomly(a);
+    let attempts = 0;
+    while (attempts < 30) {
+      placeRandomly(b);
+      const aR = a.getBoundingClientRect();
+      const bR = b.getBoundingClientRect();
+      if (!rectsOverlap(aR, bR)) return;
+      attempts++;
+    }
+    // fallback: accept current placement
+  }
+
+  // Drag handlers
+  function onPointerDown(e) {
+    // only primary button for mouse
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+    isDragging = true;
+    box.classList.add('d');
+    try { box.setPointerCapture && box.setPointerCapture(e.pointerId); } catch (err) {}
+
+    const r = box.getBoundingClientRect();
+    offsetX = e.clientX - r.left;
+    offsetY = e.clientY - r.top;
+  }
+
+  function onPointerMove(e) {
+    if (!isDragging) return;
+    const contR = container.getBoundingClientRect();
+    const boxR = box.getBoundingClientRect();
+    const x = e.clientX - contR.left - offsetX;
+    const y = e.clientY - contR.top - offsetY;
+    const minX = 0;
+    const minY = 0;
+    const maxX = contR.width - boxR.width;
+    const maxY = contR.height - boxR.height;
+    box.style.left = clamp(x, minX, maxX) + 'px';
+    box.style.top = clamp(y, minY, maxY) + 'px';
+  }
+
+  function onPointerUp(e) {
+    if (!isDragging) return;
+    isDragging = false;
+    box.classList.remove('d');
+    try { box.releasePointerCapture && box.releasePointerCapture(e.pointerId); } catch (err) {}
+
+    // If released fully inside target, add class .inside
+    const bR = box.getBoundingClientRect();
+    const yR = target.getBoundingClientRect();
+    if (isFullyInside(bR, yR)) {
+      box.classList.add('inside');
+    } else {
+      box.classList.remove('inside');
     }
   }
-  b.addEventListener('pointerdown', oPD);
-  window.addEventListener('pointermove', oPM);
-  window.addEventListener('pointerup', oPU);
-  window.addEventListener('pointercancel', oPU);
-  b.setAttribute('tabindex', '0');
+
+  // keyboard nudging for accessibility
+  box.setAttribute('tabindex', '0');
+  box.addEventListener('keydown', (e) => {
+    const step = e.shiftKey ? 10 : 4;
+    const left = parseFloat(getComputedStyle(box).left) || 0;
+    const top = parseFloat(getComputedStyle(box).top) || 0;
+    if (e.key === 'ArrowLeft') { box.style.left = Math.max(0, left - step) + 'px'; e.preventDefault(); }
+    if (e.key === 'ArrowRight') { box.style.left = Math.max(0, left + step) + 'px'; e.preventDefault(); }
+    if (e.key === 'ArrowUp') { box.style.top = Math.max(0, top - step) + 'px'; e.preventDefault(); }
+    if (e.key === 'ArrowDown') { box.style.top = Math.max(0, top + step) + 'px'; e.preventDefault(); }
+  });
+
+  // Init: random placement (after layout)
+  setTimeout(() => placeBothNonOverlapping(box, target), 10);
+
+  // Events
+  box.addEventListener('pointerdown', onPointerDown);
+  window.addEventListener('pointermove', onPointerMove);
+  window.addEventListener('pointerup', onPointerUp);
+  window.addEventListener('pointercancel', onPointerUp);
 })();
