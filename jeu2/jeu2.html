@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coupe ou Perds</title>
+  <link rel="stylesheet" href="jeu2.css">
+  <!-- Police douce pour coller au style de la maquette -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Conteneur principal du mini-jeu ; aria-live pour annoncer timer/messages -->
+  <main class="coque-jeu" aria-live="polite">
+    <!-- Bandeau du haut : titre + chronometre visible en direct -->
+    <header class="barre-info" aria-label="Infos de partie">
+      <div class="titre-container">
+        <div class="titre-jeu">Coupe ou Perds</div>
+      </div>
+      <div class="chronometre" id="timer" aria-live="assertive">5.0s</div>
+    </header>
+
+    <!-- Bloc consigne + texte clignotant indiquant la couleur cible -->
+    <section class="consignes" aria-describedby="texte-consigne">
+      <p class="texte-consigne" id="texte-consigne">Clique sur un fil avant la fin du compte à rebours.</p>
+      <div class="texte-clignotant" id="flash-text" role="status" aria-live="assertive">COUPE LE ???</div>
+    </section>
+
+    <!-- Zone interactive : trois boutons pour couper un fil -->
+    <section class="zone-fils" aria-label="Choisis un fil">
+      <button class="fil fil-rouge" data-color="rouge" type="button" aria-label="Fil rouge">Fil rouge</button>
+      <button class="fil fil-bleu" data-color="bleu" type="button" aria-label="Fil bleu">Fil bleu</button>
+      <button class="fil fil-vert" data-color="vert" type="button" aria-label="Fil vert">Fil vert</button>
+    </section>
+
+    <!-- Bouton de retour affiché en cas d'échec -->
+    <div class="retour-accueil">
+      <button id="retour-accueil" class="btn-retour" type="button" hidden>Retour à l'accueil</button>
+    </div>
+  </main>
+
+  <!-- Logique du jeu (timer, cibles, validations) -->
+  <script src="jeu2.js"></script>
+</body>
+</html>
