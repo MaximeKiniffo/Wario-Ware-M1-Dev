@@ -1,0 +1,187 @@
+﻿:root {
+  --rose-fonce: #CF5E53;
+  --rose: #EC6A5F;
+  --beige: #FFF1D2;
+  --brun-fonce: #6D4B27;
+  --brun: #B47B41;
+  --brun-clair: #DAB289;
+  --marron-prof: #8E3F38;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Gowun Batang", serif;
+  background: radial-gradient(circle at 30% 20%, rgba(255, 241, 210, 0.2), transparent 45%),
+              radial-gradient(circle at 70% 80%, rgba(236, 106, 95, 0.12), transparent 40%),
+              var(--brun-clair);
+  color: var(--brun-fonce);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.coque-jeu {
+  background: var(--beige);
+  border: 4px solid var(--brun-fonce);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15), inset 0 0 0 4px var(--brun), inset 0 0 0 8px var(--beige);
+  border-radius: 18px;
+  max-width: 540px;
+  width: 100%;
+  padding: 32px 28px;
+  position: relative;
+}
+
+.coque-jeu::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 3px solid var(--rose-fonce);
+  border-radius: 14px;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.barre-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 12px;
+}
+
+.titre-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.titre-jeu {
+  text-align: center;
+  font-size: 1.6rem;
+  color: var(--beige);
+  background: var(--rose-fonce);
+  box-shadow: inset 0 0 0 3px var(--rose), 0 6px 0 var(--marron-prof);
+  padding: 12px 24px;
+  border-radius: 10px;
+}
+
+.chronometre {
+  min-width: 84px;
+  text-align: center;
+  font-weight: 700;
+  color: var(--beige);
+  background: var(--marron-prof);
+  padding: 10px 14px;
+  border-radius: 10px;
+  box-shadow: inset 0 0 0 2px var(--rose-fonce), 0 4px 0 var(--brun-fonce);
+}
+
+.consignes {
+  text-align: center;
+  padding: 18px 12px 10px;
+  margin-bottom: 18px;
+  color: var(--brun-fonce);
+}
+
+.texte-consigne {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+}
+
+.texte-clignotant {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 10px 16px;
+  background: var(--rose);
+  color: var(--beige);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  border-radius: 10px;
+  box-shadow: inset 0 0 0 2px var(--rose-fonce), 0 6px 0 var(--marron-prof);
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(-2px); opacity: 0.8; }
+}
+
+.zone-fils {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.fil {
+  position: relative;
+  border: none;
+  cursor: pointer;
+  padding: 16px 14px;
+  font-size: 1rem;
+  color: var(--beige);
+  border-radius: 12px;
+  transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
+  box-shadow: 0 8px 0 rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(0, 0, 0, 0.08);
+}
+
+.fil:active {
+  transform: translateY(3px);
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.18), inset 0 0 0 2px rgba(0, 0, 0, 0.12);
+}
+
+.fil:disabled {
+  cursor: not-allowed;
+  filter: grayscale(0.35) brightness(0.92);
+}
+
+.fil-rouge { background: linear-gradient(180deg, var(--rose), var(--rose-fonce)); }
+.fil-bleu { background: linear-gradient(180deg, #c9e7ff, #8db9da); color: var(--marron-prof); }
+.fil-vert { background: linear-gradient(180deg, #e2f2c2, #b6d78f); color: var(--marron-prof); }
+
+.retour-accueil {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-retour {
+  padding: 12px 20px;
+  background: var(--rose-fonce);
+  color: var(--beige);
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 2px var(--rose), 0 6px 0 var(--marron-prof);
+  transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
+}
+
+.btn-retour:hover {
+  filter: brightness(1.05);
+}
+
+.btn-retour:active {
+  transform: translateY(3px);
+  box-shadow: inset 0 0 0 2px var(--rose), 0 3px 0 var(--marron-prof);
+}
+
+@media (max-width: 520px) {
+  .coque-jeu {
+    padding: 24px 18px;
+  }
+
+  .barre-info {
+    flex-direction: column;
+  }
+
+  .titre-jeu {
+    font-size: 1.4rem;
+  }
+}
