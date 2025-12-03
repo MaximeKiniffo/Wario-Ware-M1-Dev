@@ -1,1 +1,39 @@
 <!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inspecteur</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #222; color: #fff; font-family: 'Courier New', Courier, monospace; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; user-select: none;">
+
+    <div id="game-container" style="position: relative; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+        <h1 style="font-size: 4rem; color: #ff0055; text-transform: uppercase; text-shadow: 4px 4px #000; margin: 0; z-index: 10; pointer-events: none;">INSPECTE!</h1>
+        <p style="font-size: 1.5rem; color: #00ffcc; font-weight: bold; pointer-events: none;">Où est le bug?</p>
+        
+        <button id="hidden-bug" style="
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background-color: #ffe600; 
+            border: 4px solid #000;
+            border-radius: 50%;
+            display: none;
+            cursor: crosshair;
+            box-shadow: 0 0 20px #ffe600;
+            font-size: 50px;
+            text-align: center;
+            line-height: 80px;
+            padding: 0;
+            z-index: 100;
+        ">🐛</button>
+    </div>
+
+    <div id="timer-bar" style="position: absolute; bottom: 0; left: 0; height: 20px; background-color: #ff0055; width: 100%; transition: width 0.1s linear;"></div>
+
+    <div id="win-screen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none; justify-content: center; align-items: center; font-size: 5rem; font-weight: 900; z-index: 200; background: rgba(0, 255, 0, 0.8); color: white;">TROUVÉ</div>
+    <div id="lose-screen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none; justify-content: center; align-items: center; font-size: 5rem; font-weight: 900; z-index: 200; background: rgba(0, 0, 0, 0.9); color: red;">PERDU</div>
+
+    <script src="jeu3.js"></script>
+</body>
+</html>
