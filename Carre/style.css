@@ -1,0 +1,42 @@
+*, *::before, *::after { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+
+    .c{ position: relative; min-height: 100vh; padding: 18px;
+        background: linear-gradient(to bottom,
+            #FFF1D2 14.2857%, 
+            #FFF1D2 100%);
+    }
+
+.x{
+        background-color: var(--red, #e74c3c);
+        width: 100px;
+        height: 100px;
+        position: absolute; 
+        left: 20px; 
+        top: 20px;
+        border-radius: 6px;
+        box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+        cursor: grab;
+        touch-action: none; 
+}
+
+.y{
+    margin-left: 500px;
+    margin-top: 100px;
+    width: 110px;
+    height: 110px;
+    background-color: transparent;
+    border: 3px solid var(--blue, #DAB289);
+    border-radius: 4px;
+    box-sizing: border-box; 
+    outline: none;
+}
+
+.y:focus{
+    box-shadow: 0 0 0 4px rgba(52,152,219,0.12);
+}
+
+.x.d{ cursor: grabbing; transform: scale(1.02); }
+
+
+
