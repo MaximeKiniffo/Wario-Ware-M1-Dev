@@ -83,6 +83,8 @@ body {
     text-align: center;
     justify-content: center;
     align-items: center;
+    display: flex;
+    flex-direction: column;
 
 }
 
@@ -91,4 +93,19 @@ body {
     font-weight: bold;
     margin-left: auto;
     margin-right: auto;
+    font-size: 52px;
+}
+
+#boutton {
+    padding: 10px 20px;
+    background-color: #8E3F38;
+    color: #FFF1D2;
+    border: 3px solid #EC6A5F;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 2;
+    box-shadow: 0 0 10px #6D4B27;
+    transition: transform 0.2s ease, background-color 0.3s ease;
 }
