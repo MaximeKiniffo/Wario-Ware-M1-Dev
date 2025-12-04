@@ -81,7 +81,9 @@ const GameManager = {
     },
 
     redirectToRoot: function (path) {
-        window.location.href = '../' + path;
+        // Obtenir le chemin de base du site
+        const base = window.location.pathname.split('/').slice(0, -1).join('/');
+        window.location.href = base + '/' + path;
     },
 
     displayScore: function() {
