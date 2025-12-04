@@ -4,6 +4,14 @@ let gameActive = true;
 let timeoutId;
 let distinctiveSign; // 0: poignée, 1: bordure, 2: croix
 
+// Sons du jeu
+const doorSound = new Audio('assets/GrincementPorte.mp3');
+const winSound = new Audio('assets/YeahWario.mp3');
+const explodeSound = new Audio('assets/Explode.mp3');
+const clockSound = new Audio('assets/clock.mp3');
+const backgroundMusic = new Audio('assets/cvdos_darknight.mp3');
+backgroundMusic.volume = 0.3; // Réduire le volume à 30%
+
 // Initialisation du jeu
 function initGame() {
     gameActive = true;
@@ -81,13 +89,24 @@ function initGame() {
     timerBar.style.animation = 'none';
     setTimeout(() => {
         timerBar.style.animation = 'timer-countdown 5s linear forwards';
+        // Démarrer le son du timer
+        clockSound.currentTime = 0;
+        clockSound.play();
     }, 10);
     
     // Timer de 5 secondes
     if (timeoutId) clearTimeout(timeoutId);
     timeoutId = setTimeout(() => {
         if (gameActive) {
-            gameOver(false);
+            gameActive = false; // Désactiver le jeu immédiatement
+            // Arrêter le son du timer
+            clockSound.pause();
+            clockSound.currentTime = 0;
+            // Exploser le personnage
+            explodeCharacter();
+            setTimeout(() => {
+                gameOver(false);
+            }, 600);
         }
     }, 5000);
 }
@@ -117,12 +136,21 @@ function handleDoorClick(doorIndex) {
     gameActive = false;
     clearTimeout(timeoutId);
     
+    // Arrêter le son du timer
+    clockSound.pause();
+    clockSound.currentTime = 0;
+    
     const doors = document.querySelectorAll('.door');
     const clickedDoor = doors[doorIndex];
     const character = document.getElementById('character');
     
     // Ouvrir la porte
     clickedDoor.classList.add('opening');
+    doorSound.currentTime = 0;
+    doorSound.play();
+    
+    // Arrêter le son après 0.8 secondes
+    setTimeout(() => doorSound.pause(), 800);
     
     // Déplacer le personnage vers la porte
     const doorRect = clickedDoor.getBoundingClientRect();
@@ -136,6 +164,11 @@ function handleDoorClick(doorIndex) {
         
         if (doorIndex === correctDoorIndex) {
             // Bonne porte -> le personnage entre
+            winSound.currentTime = 0;
+            winSound.play();
+            
+            
+            
             character.classList.add('entering');
             setTimeout(() => {
                 gameOver(true);
@@ -155,6 +188,10 @@ function explodeCharacter() {
     const character = document.getElementById('character');
     character.textContent = '💥';
     character.classList.add('exploding');
+    
+    // Jouer le son d'explosion
+    explodeSound.currentTime = 0;
+    explodeSound.play();
     
     // Créer des particules d'explosion
     const characterRect = character.getBoundingClientRect();
@@ -187,6 +224,10 @@ function gameOver(isWin) {
     const gameOverDiv = document.getElementById('game-over');
     const resultMessage = document.getElementById('result-message');
     
+    // Arrêter la musique de fond
+    backgroundMusic.pause();
+    backgroundMusic.currentTime = 0;
+    
     if (isWin) {
         resultMessage.textContent = 'GAGNÉ !';
         resultMessage.className = 'win';
@@ -207,11 +248,16 @@ function gameOver(isWin) {
                 // Si perdu -> Accueil
                 window.location.href = '../index.html';
             }
-        }, 1000);
+        }, 1700);
     }, 300);
 }
 
 // Démarrer le jeu au chargement
 window.addEventListener('load', () => {
+    // Démarrer la musique à un moment aléatoire (entre 10 et 60 secondes)
+    const randomStart = 10 + Math.random() * 50;
+    backgroundMusic.currentTime = randomStart;
+    backgroundMusic.play();
+    
     initGame();
 });
