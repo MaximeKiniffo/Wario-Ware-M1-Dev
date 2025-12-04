@@ -1,4 +1,27 @@
 (function(){
+	// écran de démarrage
+	const startScreen = document.getElementById('start-screen');
+	const boardEl = document.getElementById('board');
+	
+	function hideStartScreen(){
+		if (startScreen){
+			startScreen.style.display = 'none';
+		}
+		if (boardEl){
+			boardEl.style.display = 'block';
+		}
+		startGameInit();
+	}
+	
+	if (startScreen){
+		startScreen.addEventListener('click', hideStartScreen);
+		startScreen.addEventListener('touchstart', (e)=>{
+			e.preventDefault();
+			hideStartScreen();
+		}, {once: true});
+	}
+	
+	function startGameInit(){
 	const board = document.getElementById('board');
 	const safeEl = document.getElementById('safe');
 	const hint = document.getElementById('hint');
@@ -8,22 +31,18 @@
 	const WALL_COLOR = {r:207, g:94, b:83, a:255}; // #CF5E53
 	const PATH_COLOR = '#FFF1D2';
 
-	// son de succès (joué quand la sortie devient verte)
-	const SUCCESS_SOUND_SRC = 'resources/00E2_0010.wav';
+	// son de succès (joué quand la sortie devient verte) — inspiration Jeu5
+	const SUCCESS_SOUND_SRC = 'resources/oh_yeah.wav';
 	const successAudio = new Audio(SUCCESS_SOUND_SRC);
 	successAudio.preload = 'auto';
 
-	// tentatively unlock audio playback on first user interaction (some navigateurs bloquent la lecture
-	// automatique sauf après un 'gesture' explicite). On first pointerdown/touchstart on la teste.
+	// déverrouiller la lecture audio au premier geste utilisateur
 	(function unlockAudioOnFirstGesture(){
 		function _unlock(){
-			// essayer de jouer puis stopper immédiatement pour débloquer l'API audio
 			successAudio.play().then(()=>{
 				successAudio.pause();
 				successAudio.currentTime = 0;
-			}).catch(()=>{
-				// si échec, on ignore ; l'audio sera tenté à l'événement de succès
-			});
+			}).catch(()=>{});
 			document.removeEventListener('pointerdown', _unlock);
 			document.removeEventListener('touchstart', _unlock);
 		}
@@ -44,6 +63,7 @@
 
 	let safeSet = false;
 	let center = {x:0,y:0};
+	let isPlaying = true;
 
 	// initialiser/redimensionner le canvas en fonction de la taille de la zone
 	function resizeCanvas(){
@@ -409,6 +429,8 @@
 				clearCountdown();
 				window.removeEventListener('pointermove', onPointerMove, {passive:true});
 				window.removeEventListener('touchmove', onPointerMove, {passive:true});
+				// afficher le panneau de victoire et rediriger
+				showWinScreen();
 				return;
 			}
 		}
@@ -419,14 +441,40 @@
 		const px = getCanvasPixelColor(x,y);
 		if (!px) return; 
 		if (colorEquals(px, WALL_COLOR)){
-			window.location.href = '../index.html';
+			showLoseScreen();
 		}
 	}
 
+	// afficher le panneau de victoire et rediriger via GameManager
+	function showWinScreen(){
+		if (!isPlaying) return;
+		isPlaying = false;
+		const winScreen = document.getElementById('win-screen');
+		if (winScreen){
+			winScreen.style.display = 'flex';
+			setTimeout(()=>{
+				GameManager.onWin();
+			}, 2000);
+		}
+	}
 
-	generateAndDrawMaze();
-	GameManager.displayScore();
+	// afficher le panneau de défaite et rediriger vers l'accueil
+	function showLoseScreen(){
+		if (!isPlaying) return;
+		isPlaying = false;
+		const loseScreen = document.getElementById('lose-screen');
+		if (loseScreen){
+			loseScreen.style.display = 'flex';
+			setTimeout(()=>{
+				GameManager.onLose();
+			}, 2000);
+		}
+	}
 
+	// Ajouter les event listeners pour le mouvement du pointeur
 	window.addEventListener('pointermove', onPointerMove, {passive:true});
 	window.addEventListener('touchmove', onPointerMove, {passive:true});
+	} // fin de startGameInit
+
 })();
+GameManager.displayScore();
