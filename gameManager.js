@@ -45,5 +45,32 @@ const GameManager = {
 
     redirectToRoot: function(path) {
         window.location.href = '../' + path;
+    },
+
+    displayScore: function() {
+        const current = sessionStorage.getItem('currentGameIndex') || 1;
+        const total = sessionStorage.getItem('totalGames') || '?';
+
+        const scoreDiv = document.createElement('div');
+        scoreDiv.innerText = `Score ${current} / ${total}`;
+        
+        // Style CSS injecté directement via JS pour ne pas toucher à tous tes fichiers CSS
+        Object.assign(scoreDiv.style, {
+            position: 'absolute',
+            bottom: '30px', 
+            right: '30px',
+            fontSize: '1.5rem', // Taille moyenne
+            fontFamily: '"Gowun Batang", serif',
+            color: '#FDF5E6', // Crème
+            backgroundColor: 'rgba(169, 131, 86, 0.9)', // Fond marron clair
+            border: '4px solid #5D402B', // Bordure marron foncé
+            padding: '10px 20px',
+            borderRadius: '8px', 
+            zIndex: '1000',
+            pointerEvents: 'none', 
+            boxShadow: '0 4px 6px rgba(0,0,0,0.3)'
+        });
+
+        document.body.appendChild(scoreDiv);
     }
 };
