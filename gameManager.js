@@ -16,7 +16,7 @@ const GameManager = {
 
         sessionStorage.setItem('totalGames', this.gamesList.length);
 
-        sessionStorage.setItem('currentGameIndex', 0);
+        sessionStorage.setItem('currentGameIndex', '0');
         
         this.pickNextGame(this.gamesList);
     },
@@ -29,14 +29,18 @@ const GameManager = {
         
         remaining = remaining.filter(game => !currentPath.includes(game));
 
+        // Incrémenter le score AVANT de vérifier s'il reste des jeux
+        let currentIndex = parseInt(sessionStorage.getItem('currentGameIndex') || '0', 10);
+        currentIndex++;
+        sessionStorage.setItem('currentGameIndex', currentIndex);
+
         if (remaining.length === 0) {
             // --- LOGIQUE FINALE (VICTOIRE TOTALE) ---
-            const currentIndex = parseInt(sessionStorage.getItem('currentGameIndex') || '1', 10);
             const totalGames = parseInt(sessionStorage.getItem('totalGames') || '0', 10);
 
             // On sauvegarde le score final pour l'écran de victoire
-            sessionStorage.setItem('victoryScore', Number.isFinite(currentIndex) ? currentIndex : 0);
-            sessionStorage.setItem('victoryTotal', Number.isFinite(totalGames) ? totalGames : 0);
+            sessionStorage.setItem('victoryScore', currentIndex);
+            sessionStorage.setItem('victoryTotal', totalGames);
 
             // On nettoie la session comme dans onLose
             sessionStorage.removeItem('remainingGames'); 
@@ -47,9 +51,6 @@ const GameManager = {
             this.redirectToRoot('Victoire/victoire.html'); 
         } else {
             // --- CONTINUER LE JEU ---
-            let currentIndex = parseInt(sessionStorage.getItem('currentGameIndex') || 1);
-            sessionStorage.setItem('currentGameIndex', currentIndex + 1);
-
             sessionStorage.setItem('remainingGames', JSON.stringify(remaining));
             this.pickNextGame(remaining);
         }
@@ -74,7 +75,7 @@ const GameManager = {
     },
 
     displayScore: function() {
-        const current = sessionStorage.getItem('currentGameIndex') || 1;
+        const current = parseInt(sessionStorage.getItem('currentGameIndex') || '0', 10);
         const total = sessionStorage.getItem('totalGames') || '?';
 
         const scoreDiv = document.createElement('div');
