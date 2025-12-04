@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Micro-Jeu WarioWare - Chasse-Taupe Flash</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Lato:ital,wght@0,100;0,300;0,0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <audio id="game-music" loop>
+        <source src="musique_fun.mp3" type="audio/mpeg">
+        Votre navigateur ne supporte pas l'élément audio.
+    </audio>
+
+    <div id="game-container">
+        
+        <div id="message-area">
+            <h1 id="instructions" class="gowun-batang-bold">PRÊT À FRAPPER ?</h1>
+            <p id="timer">Temps : 10.00s</p>
+            <p id="score">Score : 0</p>
+        </div>
+        
+        <div id="whack-a-mole-grid">
+            </div>
+
+        <div id="end-screen" class="gowun-batang-bold">
+            <p id="final-message">RÉSULTAT DU DUEL</p>
+            <button id="return-button">RETOUR À L'ACCUEIL</button>
+        </div>
+        
+    </div>
+
+    
+    <script src="main.js"></script>
+    <script src="/Wario-Ware-M1-Dev/gameManager.js"></script>
+</body>
+</html>
