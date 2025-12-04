@@ -14,7 +14,7 @@ const checkCube = (cube) => {
         compteur += 1
     }
     if (compteur >= 9) {
-        console.log("win")
+        onWin();
     }
 }
 
@@ -25,4 +25,8 @@ cubes.forEach((e) => {
     })
     nbcubes += 1
 })
+
+const onWin = () => {
+    window.location.href = "/"
+}
 

@@ -24,7 +24,7 @@ body {
     /* largeur fixe */
     height: 80vh;
     /* hauteur fixe */
-    margin: 40px auto;
+    margin: 0 auto;
     /* centre horizontalement avec un espace en haut */
     border: 5px solid #8E3F38;
     border-radius: 12px;
@@ -32,6 +32,8 @@ body {
     overflow: hidden;
     /* cache ce qui dépasse */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    top: -20px;
+    z-index: 1;
 }
 
 
@@ -118,4 +120,27 @@ body {
     z-index: 2;
     box-shadow: 0 0 10px #6D4B27;
     transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.header {
+    background-color: #EC6A5F;
+    border: 5px solid #8e3f38;
+    border-radius: 10px;
+    position: relative;
+    margin: 0;
+    z-index: 2;
+    width: 80vw;
+    margin: auto;
+    margin-top: 20px;
+
+
+}
+
+.headerMain {
+    background-color: #d36054;
+    color: white;
+    padding: 1px;
+    margin: 10px;
+    align-items: center;
+    text-align: center;
 }
