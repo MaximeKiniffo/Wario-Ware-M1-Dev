@@ -16,7 +16,7 @@ const GameManager = {
 
         sessionStorage.setItem('totalGames', this.gamesList.length);
 
-        sessionStorage.setItem('currentGameIndex', 1);
+        sessionStorage.setItem('currentGameIndex', 0);
         
         this.pickNextGame(this.gamesList);
     },
@@ -60,7 +60,7 @@ const GameManager = {
         sessionStorage.removeItem('remainingGames'); 
         sessionStorage.removeItem('totalGames');
         sessionStorage.removeItem('currentGameIndex');
-        this.redirectToRoot('Accueil/accueil.html');
+        this.redirectToRoot('index.html');
     },
 
     pickNextGame: function(gamesArray) {
