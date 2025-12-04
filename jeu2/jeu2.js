@@ -70,8 +70,12 @@ function terminerManche(etat, restantMs = Math.max(0, finTemps - Date.now())) {
     // Temps utilise = duree totale (5s) - temps restant au moment du clic
     const tempsPris = (DUREE_MS - restantMs) / 1000;
     const tempsFormate = Math.max(0, tempsPris).toFixed(1).replace('.', ',');
-    texteFlash.textContent = `VICTOIRE ! Tu as coupe le bon fil en ${tempsFormate} secondes.`;
-    boutonRetour.hidden = true;
+    texteFlash.textContent = `VICTOIRE ! Tu as coupé le bon fil en ${tempsFormate} secondes.`;
+    
+    // Redirection vers le jeu suivant après 1 seconde
+    setTimeout(() => {
+      GameManager.onWin();
+    }, 1000);
     return;
   }
 
@@ -81,7 +85,10 @@ function terminerManche(etat, restantMs = Math.max(0, finTemps - Date.now())) {
     texteFlash.textContent = 'TEMPS ÉCOULÉ !';
   }
 
-  boutonRetour.hidden = false;
+  // Redirection vers l'accueil après 1 seconde
+  setTimeout(() => {
+    GameManager.onLose();
+  }, 1000);
 }
 
 // Initialise la manche : choisit une cible, demarre le timer et branche les clics
@@ -96,10 +103,6 @@ function initialiser() {
       const choix = bouton.dataset.color;
       terminerManche(choix === cible ? 'win' : 'wrong', restant);
     });
-  });
-
-  boutonRetour.addEventListener('click', () => {
-    window.location.href = '../index.html';
   });
 }
 

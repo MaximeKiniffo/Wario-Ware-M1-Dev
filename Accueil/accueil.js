@@ -1,8 +1,10 @@
-﻿(() => {
-    const creditsBtn = document.getElementById("credits-btn");
-    if (creditsBtn) {
-        creditsBtn.addEventListener("click", () => {
-            window.location.href = "../Credits/credits.html";
+
+document.addEventListener('DOMContentLoaded', () => {
+    const playBtn = document.getElementById('play-btn');
+    
+    if(playBtn) {
+        playBtn.addEventListener('click', () => {
+            GameManager.startGame();
         });
     }
-})();
+});
