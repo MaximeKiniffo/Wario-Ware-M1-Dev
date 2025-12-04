@@ -9,8 +9,6 @@ const doorSound = new Audio('assets/GrincementPorte.mp3');
 const winSound = new Audio('assets/YeahWario.mp3');
 const explodeSound = new Audio('assets/Explode.mp3');
 const clockSound = new Audio('assets/clock.mp3');
-const backgroundMusic = new Audio('assets/cvdos_darknight.mp3');
-backgroundMusic.volume = 0.3; // Réduire le volume à 30%
 
 // Initialisation du jeu
 function initGame() {
@@ -224,10 +222,6 @@ function gameOver(isWin) {
     const gameOverDiv = document.getElementById('game-over');
     const resultMessage = document.getElementById('result-message');
     
-    // Arrêter la musique de fond
-    backgroundMusic.pause();
-    backgroundMusic.currentTime = 0;
-    
     if (isWin) {
         resultMessage.textContent = 'GAGNÉ !';
         resultMessage.className = 'win';
@@ -254,10 +248,6 @@ function gameOver(isWin) {
 
 // Démarrer le jeu au chargement
 window.addEventListener('load', () => {
-    // Démarrer la musique à un moment aléatoire (entre 10 et 60 secondes)
-    const randomStart = 10 + Math.random() * 50;
-    backgroundMusic.currentTime = randomStart;
-    backgroundMusic.play();
-    
+    GameManager.displayScore();
     initGame();
 });
