@@ -15,10 +15,11 @@ document.addEventListener("click", (event) => {
     }
 });
 
-const bouton = document.getElementById("monBouton");
-const gameZone = document.getElementById("gameZone");
+
 let lost = false;
 function bougerBouton() {
+    const bouton = document.getElementById("monBouton");
+    const gameZone = document.getElementById("gameZone");
     if (!lost) {
         const largeur = gameZone.clientWidth - bouton.offsetWidth;
         const hauteur = gameZone.clientHeight - bouton.offsetHeight;
@@ -32,12 +33,12 @@ function bougerBouton() {
 }
 
 function handlePressButton() {
-    // redirection correcte
-    window.location.href = "/";
+    console.log("win")
+    GameManager.onWin();
 }
 
-// bouge toutes les X secondes (ici 0.3 seconde)
-setInterval(bougerBouton, 500);
+// bouge toutes les X secondes (ici 0.5 seconde)
+setInterval(bougerBouton, 700);
 
 //gestion du compte à rebours
 function startCountdown() {
@@ -55,7 +56,8 @@ function startCountdown() {
             lost = true;
             document.getElementById("lost").style.visibility = "visible";
             setTimeout(() => {
-                window.location.href = "/";
+                GameManager.onLose();
+
             }, 2000);
         }
     }, 1000);
