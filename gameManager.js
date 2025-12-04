@@ -44,7 +44,7 @@ const GameManager = {
             sessionStorage.removeItem('currentGameIndex');
 
             // Redirection vers la page Victoire
-            this.redirectToRoot('Victoire/victoire.html'); 
+            this.redirectToRoot('index.html'); 
         } else {
             // --- CONTINUER LE JEU ---
             let currentIndex = parseInt(sessionStorage.getItem('currentGameIndex') || 1);
@@ -57,10 +57,17 @@ const GameManager = {
 
     onLose: function() {
         console.log("Défaite.");
+
+        const currentIndex = parseInt(sessionStorage.getItem('currentGameIndex') || '1', 10);
+        const totalGames = parseInt(sessionStorage.getItem('totalGames') || '0', 10);
+
+        sessionStorage.setItem('defeatScore', Number.isFinite(currentIndex) ? currentIndex : 0);
+        sessionStorage.setItem('defeatTotal', Number.isFinite(totalGames) ? totalGames : 0);
+
         sessionStorage.removeItem('remainingGames'); 
         sessionStorage.removeItem('totalGames');
         sessionStorage.removeItem('currentGameIndex');
-        this.redirectToRoot('index.html');
+        this.redirectToRoot('Defaite/defaite.html');
     },
 
     pickNextGame: function(gamesArray) {
