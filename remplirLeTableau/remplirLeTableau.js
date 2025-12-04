@@ -30,6 +30,24 @@ const onWin = () => {
     window.location.href = "/"
 }
 
+function startCountdown() {
+    let timeLeft = 5; // 5 secondes
+    const countdownEl = document.getElementById("countdown");
+
+    countdownEl.textContent = timeLeft;
+
+    const timer = setInterval(() => {
+        timeLeft--;
+        countdownEl.textContent = timeLeft;
+
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            lost = true;
+            document.getElementById("lost").style.visibility = "visible"
+        }
+    }, 1000);
+}
+
 //fonction qui se lance au chargement de la page
 const onStart = () => {
     const consigne = document.getElementById("consigneView");

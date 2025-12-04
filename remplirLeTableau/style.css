@@ -177,3 +177,23 @@ body {
     align-self: center;
     align-content: center;
 }
+
+#lost {
+    visibility: hidden;
+    background-color: #CF5E53;
+    box-shadow: 0 0 10px #6D4B27;
+    border: 3px solid #EC6A5F;
+    width: 80vh;
+    height: 80vh;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+
+}
