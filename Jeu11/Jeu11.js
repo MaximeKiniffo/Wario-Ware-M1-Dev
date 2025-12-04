@@ -7,8 +7,12 @@ let win = false
 let lose = false
 let timer
 
+let popAudio = new Audio("Assets/pop.mp3")
+
 const checkCube = (cube) => {
     const backgroundColor = cube.style.backgroundColor
+    popAudio.currentTime = 0
+    popAudio.play()
     if (backgroundColor == colorSelect) {
         cube.style.backgroundColor = colorUnSelect
         compteur -= 1
