@@ -46,25 +46,6 @@ body {
     box-sizing: border-box;
 }
 
-
-
-
-
-
-#boutton {
-    padding: 10px 20px;
-    background-color: #8E3F38;
-    color: #FFF1D2;
-    border: 3px solid #EC6A5F;
-    border-radius: 12px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    cursor: pointer;
-    z-index: 2;
-    box-shadow: 0 0 10px #6D4B27;
-    transition: transform 0.2s ease, background-color 0.3s ease;
-}
-
 .header {
     background-color: #EC6A5F;
     border: 5px solid #8e3f38;
@@ -88,12 +69,6 @@ body {
     text-align: center;
 }
 
-.gowun-batang-regular {
-    font-family: "Gowun Batang", serif;
-    font-weight: 400;
-    font-style: normal;
-}
-
 .gowun-batang-bold {
     font-family: "Gowun Batang", serif;
     font-weight: 700;
@@ -103,7 +78,6 @@ body {
 
 #consigne {
     z-index: 100;
-
     width: 70vw;
     /* largeur fixe */
     /* hauteur fixe */
@@ -116,8 +90,6 @@ body {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
     z-index: 1;
     margin: auto auto;
-
-
 }
 
 #consigneMain {
@@ -129,8 +101,6 @@ body {
     box-sizing: border-box;
     font-size: 36;
     text-align: center;
-
-
 }
 
 .background {
@@ -175,7 +145,6 @@ body {
     background-color: #fff1d2;
     border: 10px solid #b47b41;
     border-radius: 8px;
-
     z-index: 3;
     color: #8e3f38;
     padding-left: 100px;
