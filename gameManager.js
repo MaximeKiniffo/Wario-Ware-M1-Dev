@@ -1,0 +1,49 @@
+const GameManager = {
+    // Chemins vers les jeux
+    gamesList: [
+        'jeu1/jeu1.html',
+        'jeu2/jeu2.html', // Modifier selon vos chemins
+        'jeu3/jeu3.html',
+        'jeu4/jeu4.html'   
+    ],
+
+    // Commencer le jeu depuis accueil
+    startGame: function() {
+        sessionStorage.setItem('remainingGames', JSON.stringify(this.gamesList));
+        
+        this.pickNextGame(this.gamesList);
+    },
+
+    onWin: function() {
+        console.log("Victoire !");
+        
+        let remaining = JSON.parse(sessionStorage.getItem('remainingGames'));
+        
+        const currentPath = window.location.pathname; 
+        remaining = remaining.filter(game => !currentPath.includes(game));
+
+        if (remaining.length === 0) {
+            // Redirection vers l'accueil, ou vers une page de victoire ?
+            this.redirectToRoot('Accueil/accueil.html'); 
+        } else {
+            sessionStorage.setItem('remainingGames', JSON.stringify(remaining));
+            this.pickNextGame(remaining);
+        }
+    },
+
+    onLose: function() {
+        console.log("Défaite.");
+        sessionStorage.removeItem('remainingGames'); 
+        this.redirectToRoot('Accueil/accueil.html');
+    },
+
+    pickNextGame: function(gamesArray) {
+        const randomIndex = Math.floor(Math.random() * gamesArray.length);
+        const nextGame = gamesArray[randomIndex];
+        this.redirectToRoot(nextGame);
+    },
+
+    redirectToRoot: function(path) {
+        window.location.href = '../' + path;
+    }
+};
