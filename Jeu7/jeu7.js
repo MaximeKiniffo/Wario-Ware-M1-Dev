@@ -395,3 +395,9 @@ canvas.addEventListener("click", () => {
 GameManager.displayScore();
 resetGame();
 requestAnimationFrame(loop);
+
+
+// Afficher le score
+if (typeof GameManager !== 'undefined' && GameManager.displayScore) {
+    GameManager.displayScore();
+}
