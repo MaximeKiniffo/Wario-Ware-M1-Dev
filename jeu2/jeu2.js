@@ -106,3 +106,4 @@ function initialiser() {
 
 // Lance le jeu des que le DOM est pret
 window.addEventListener("DOMContentLoaded", initialiser);
+GameManager.displayScore();
