@@ -52,6 +52,7 @@ function handlePressWin() {
 
 //gestion du compte à rebours
 function startCountdown() {
+    GameManager.displayScore()
     let timeLeft = 5; // 5 secondes
     const countdownEl = document.getElementById("countdown");
 
