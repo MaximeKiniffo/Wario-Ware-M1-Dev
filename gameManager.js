@@ -48,7 +48,7 @@ const GameManager = {
             sessionStorage.removeItem('currentGameIndex');
 
             // Redirection vers la page Victoire
-            this.redirectToRoot('index.html'); 
+            this.redirectToRoot('Victoire/victoire.html'); 
         } else {
             // --- CONTINUER LE JEU ---
             sessionStorage.setItem('remainingGames', JSON.stringify(remaining));

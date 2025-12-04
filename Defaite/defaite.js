@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     replayBtn?.addEventListener('click', () => {
-        window.location.href = '../Accueil/accueil.html';
+        window.location.href = '../index.html';
     });
 
     sessionStorage.removeItem('defeatScore');
