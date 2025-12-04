@@ -91,13 +91,24 @@ function endGame(win) {
     if(win) {
         let winTitle = document.querySelector(".win-title");
         winTitle.classList.remove("hidden");
+        
+        // Redirection vers le jeu suivant après 1 seconde
+        setTimeout(() => {
+            GameManager.onWin();
+        }, 1000);
     } else {
         let loseTitle = document.querySelector(".lose-title");
         loseTitle.classList.remove("hidden");
+        
+        // Redirection vers l'accueil après 1 seconde
+        setTimeout(() => {
+            GameManager.onLose();
+        }, 1000);
     }
     const balloons = document.querySelectorAll(".balloon, .balloon-to-pop");
     balloons.forEach(b => b.remove());
 }
+
 
 window.onload = () => {
     startGame();
