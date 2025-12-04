@@ -8,7 +8,7 @@ const GameManager = {
         'Jeu5/jeu5.html',
         'jeu6/jeu6.html',
         'Jeu7/jeu7.html',
-        'Jeu8/jeu8/html',
+        'Jeu8/jeu8.html',
         'Jeu9/jeu9.html',
         'Jeu10/jeu10.html',
         'Jeu11/jeu11.html',
