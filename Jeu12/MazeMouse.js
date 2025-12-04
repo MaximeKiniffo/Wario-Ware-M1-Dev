@@ -104,8 +104,11 @@
 
                     const cx = Math.floor(x * cellW + cellW/2);
 					const cy = Math.floor(y * cellH + cellH/2);
-					// agrandir légèrement les cercles pour qu'ils se rapprochent/chevauchent visuellement
-					const radius = Math.max(6, Math.floor(Math.min(cellW, cellH) * 0.42));
+					// calculer un petit espacement (gap) et définir le rayon pour que les cercles
+					// soient proches mais conservent un petit écart visuel quel que soit l'écran
+					const minDim = Math.min(cellW, cellH);
+					const gapPx = Math.max(2, Math.min(8, Math.floor(minDim * 0.06))); // petit espace relatif
+					const radius = Math.max(6, Math.floor((minDim - gapPx) / 2));
 						// dessiner la cellule circulaire (chemin)
 					ctx.beginPath();
 					ctx.arc(cx, cy, radius, 0, Math.PI*2);
@@ -157,7 +160,9 @@
 			ctx.fillStyle = PATH_COLOR;
 			const cx = Math.floor(px + cellW/2);
 			const cy = Math.floor(py + cellH/2);
-			const radius = Math.max(6, Math.floor(Math.min(cellW,cellH) * 0.42));
+			const minDim = Math.min(cellW, cellH);
+			const gapPx = Math.max(2, Math.min(8, Math.floor(minDim * 0.06)));
+			const radius = Math.max(6, Math.floor((minDim - gapPx) / 2));
 
             ctx.beginPath(); ctx.arc(cx, cy, radius, 0, Math.PI*2); ctx.fill();
 			if (c.x === 0){
