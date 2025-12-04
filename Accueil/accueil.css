@@ -1,0 +1,123 @@
+﻿:root {
+    --salmon: #CF5E53;
+    --salmon-light: #EC6A5F;
+    --cream: #FFF1D2;
+    --deep-brown: #6D4B27;
+    --rich-brown: #8E3F38;
+    --accent-brown: #B47B41;
+    --sand: #DAB289;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Georgia", "Times New Roman", serif;
+    background-color: var(--sand);
+    color: var(--rich-brown);
+}
+
+.landing {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 34px 16px;
+}
+
+.card {
+    position: relative;
+    width: min(520px, 100%);
+    background: var(--cream);
+    border: 5px solid var(--accent-brown);
+    box-shadow:
+        0 0 0 4px var(--deep-brown),
+        0 6px 0 var(--accent-brown);
+    border-radius: 7px;
+    padding: 78px 60px 60px;
+}
+
+.title-banner {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--salmon);
+    color: var(--cream);
+    border: 3px solid var(--rich-brown);
+    border-radius: 12px;
+    padding: 12px 34px;
+    text-align: center;
+    box-shadow: inset 0 0 0 3px var(--salmon-light);
+}
+
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 26px;
+}
+
+.message {
+    margin: 0;
+    text-align: center;
+    line-height: 1.7;
+    color: var(--rich-brown);
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.pill-btn {
+    background: var(--salmon);            
+    color: var(--cream);
+    border: 3px solid var(--rich-brown);
+    border-radius: 12px;
+    padding: 12px 26px;
+    min-width: 150px;
+    font-size: 1rem;
+    font-family: "Georgia", "Times New Roman", serif;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 3px var(--salmon-light);
+    transition: transform 120ms ease, background-color 120ms ease;
+}
+
+.pill-btn:hover {
+    background: var(--salmon-light);
+    transform: translateY(-1px);
+}
+
+.pill-btn:active {
+    transform: translateY(2px);
+}
+
+.pill-btn:focus-visible {
+    outline: 3px solid var(--accent-brown);
+    outline-offset: 2px;
+}
+
+@media (max-width: 540px) {
+    .card {
+        padding: 70px 26px 56px;
+    }
+
+    .title-banner {
+        top: -28px;
+        padding: 12px 24px;
+    }
+
+    .actions {
+        gap: 16px;
+    }
+}

@@ -1,3 +1,4 @@
+
 const GAME_DURATION = 10000;
 const THRESHOLD = 160; 
 
@@ -91,17 +92,20 @@ bug.addEventListener('click', () => {
 function gameOver(win) {
     isPlaying = false;
     stopJitter(bug);
+
     if (win) {
         winScreen.style.display = 'flex';
         
         setTimeout(() => {
-            window.location.href = 'ouvrir_bonne_porte/ouvrir_bonne_porte.html';
+            GameManager.onWin(); 
         }, 2000); 
         
-        if(window.parent && window.parent.onGameWin) window.parent.onGameWin();
     } else {
         loseScreen.style.display = 'flex';
-        if(window.parent && window.parent.onGameLose) window.parent.onGameLose();
+        
+        setTimeout(() => {
+            GameManager.onLose();
+        }, 2000);
     }
 }
 
