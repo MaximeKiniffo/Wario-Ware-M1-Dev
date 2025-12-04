@@ -11,8 +11,8 @@ const height = canvas.height;
 // CONFIG
 // -------------------------
 const BALL_RADIUS = 12;
-const LAUNCH_POWER = 0.12;
-const MAX_SPEED = 12;
+const LAUNCH_POWER = 0.08;
+const MAX_SPEED = 8;
 const FRICTION = 0.999;
 const GRAVITY = 0.25;
 const TIME_LIMIT = 6;
@@ -178,15 +178,21 @@ function update(dt) {
         ball.x += ball.vx * dt * 60;
         ball.y += ball.vy * dt * 60;
 
-        // Collisions murs
-        if (ball.x - ball.radius < 0) {
-            ball.x = ball.radius;
-            ball.vx *= -1;
+        // Sortie par les côtés (gauche ou droite) = défaite
+        if (ball.x - ball.radius < 0 || ball.x + ball.radius > width) {
+            gameState.running = false;
+            gameState.lose = true;
+            statusMessage.textContent = "La boule est sortie !";
+            statusMessage.className = "status-message lose";
+            
+            // Redirection vers l'accueil après 1 seconde
+            setTimeout(() => {
+                GameManager.onLose();
+            }, 1000);
+            return;
         }
-        if (ball.x + ball.radius > width) {
-            ball.x = width - ball.radius;
-            ball.vx *= -1;
-        }
+
+        // Collision avec le haut
         if (ball.y - ball.radius < 0) {
             ball.y = ball.radius;
             ball.vy *= -1;
