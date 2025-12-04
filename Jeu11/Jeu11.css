@@ -146,29 +146,21 @@ body {
     align-content: center;
 }
 
-#lostView {
-    visibility: hidden;
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0 0 0 / 0.81);
-    z-index: 1;
-    top: 0;
+.horizontalView {
+    display: flex;
+    flex-direction: row;
     align-items: center;
-    align-self: center;
-    align-content: center;
-
+    justify-content: center;
+    gap: 5px;
 }
 
-#lost {
-    background-color: #CF5E53;
-    border: 5px solid #8e3f38;
-    border-radius: 10px;
-    width: 50vw;
-    height: 50vh;
+.status {
+    visibility: hidden;
+    border: 5px solid #6D4B27;
     position: absolute;
     left: 50%;
     top: 50%;
+    border-radius: 15px;
     transform: translate(-50%, -50%);
     z-index: 3;
     text-align: center;
@@ -176,35 +168,16 @@ body {
     align-items: center;
     display: flex;
     flex-direction: column;
-
+    z-index: 100;
 }
 
+.statusMain {
+    background-color: #fff1d2;
+    border: 10px solid #b47b41;
+    border-radius: 8px;
 
-
-#lost>h1 {
-    color: #6D4B27;
-    font-weight: bold;
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 52px;
-}
-
-
-#lostMain {
-    border: 10px solid #B47B41;
-    background-color: #FFF1D2;
-    width: 100%;
-    height: 100%;
-    padding: 10px;
-    box-sizing: border-box;
-    font-size: 36;
-    text-align: center;
-}
-
-.horizontalView {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
+    z-index: 3;
+    color: #8e3f38;
+    padding-left: 100px;
+    padding-right: 100px;
 }

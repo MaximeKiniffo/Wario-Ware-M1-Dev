@@ -3,6 +3,9 @@ let nbcubes = 0
 let colorSelect = "green"
 let colorUnSelect = "#FFF1D2"
 let compteur = 0
+let win = false
+let lose = false
+let timer
 
 const checkCube = (cube) => {
     const backgroundColor = cube.style.backgroundColor
@@ -20,14 +23,21 @@ const checkCube = (cube) => {
 
 cubes.forEach((e) => {
     e.addEventListener("click", (event) => {
-        checkCube(e)
-
+        if (!lose & !win)
+            checkCube(e)
     })
     nbcubes += 1
 })
 
 const onWin = () => {
-    window.location.href = "/"
+    console.log("win")
+    clearInterval(timer)
+    win = true
+    document.getElementById("win").style.visibility = "visible";
+    setTimeout(() => {
+        console.log("jeu suivant")
+        GameManager.onWin();
+    }, 1000)
 }
 
 function startCountdown() {
@@ -36,16 +46,20 @@ function startCountdown() {
 
     countdownEl.textContent = timeLeft;
 
-    const timer = setInterval(() => {
+    timer = setInterval(() => {
         timeLeft -= 0.10;
         timeLeft = timeLeft.toFixed(2)
         countdownEl.textContent = timeLeft;
 
         if (timeLeft <= 0) {
             clearInterval(timer);
-            lost = true;
-            document.getElementById("lostView").style.visibility = "visible"
+            lose = true;
+            document.getElementById("lost").style.visibility = "visible"
+            setTimeout(() => {
+                GameManager.onLose();
+            }, 1500);
         }
+
     }, 100);
 }
 
@@ -58,5 +72,8 @@ const onStart = () => {
     }, 2000)
 
 }
+window.onload = () => {
+    GameManager.displayScore()
+    onStart()
+}
 
-onStart()
