@@ -111,6 +111,7 @@ function endGame(win) {
 
 
 window.onload = () => {
+    GameManager.displayScore();
     startGame();
     
 };

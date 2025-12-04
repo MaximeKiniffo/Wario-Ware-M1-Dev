@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="Jeu11.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="header">
+      <div class="headerMain">
+        <p class="gowun-batang-bold">Remplir le Tableau</p>
+        <div class="horizontalView">
+          <p id="countdown">5</p>
+          <p>secondes</p>
+        </div>
+      </div>
+    </div>
+    <div id="gameZone">
+      <div id="gameZoneMain">
+        <table>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div id="consigneView" class="background">
+      <div id="consigne">
+        <div id="consigneMain">
+          <p class="gowun-batang-bold">
+            Click sur toute les cases du tableau !
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="status" id="lost">
+      <div class="statusMain" id="winMain">
+      <h1>Perdu</h1>
+      </div>
+    </div>
+    <div class="status" id="win">
+      <div class="statusMain" id="winMain">
+        <h1>Gagné</h1>
+      </div>
+    </div>
+
+    <script src="./Jeu11.js"></script>
+    <script src="../gameManager.js"></script>
+  </body>
+</html>

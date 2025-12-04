@@ -5,16 +5,9 @@ const GameManager = {
         'jeu2/jeu2.html', // Modifier selon vos chemins
         'jeu3/jeu3.html',
         'jeu4/jeu4.html', 
-        'Jeu5/jeu5.html',
-        'jeu6/jeu6.html',
         'Jeu7/jeu7.html',
-        'Jeu8/jeu8/html',
-        'Jeu9/jeu9.html',
-        'Jeu10/jeu10.html',
-        'Jeu11/jeu11.html',
+        'Jeu8/jeu8.html',
         'Jeu12/jeu12.html',
-        'jeu13/jeu13.html',
-        'jeu14/jeu14.html' 
     ],
 
     // Commencer le jeu depuis accueil
@@ -23,7 +16,7 @@ const GameManager = {
 
         sessionStorage.setItem('totalGames', this.gamesList.length);
 
-        sessionStorage.setItem('currentGameIndex', 1);
+        sessionStorage.setItem('currentGameIndex', 0);
         
         this.pickNextGame(this.gamesList);
     },
@@ -32,14 +25,28 @@ const GameManager = {
         console.log("Victoire !");
         
         let remaining = JSON.parse(sessionStorage.getItem('remainingGames'));
-        
         const currentPath = window.location.pathname; 
+        
         remaining = remaining.filter(game => !currentPath.includes(game));
 
         if (remaining.length === 0) {
-            // Redirection vers l'accueil, ou vers une page de victoire ?
-            this.redirectToRoot('Accueil/accueil.html'); 
+            // --- LOGIQUE FINALE (VICTOIRE TOTALE) ---
+            const currentIndex = parseInt(sessionStorage.getItem('currentGameIndex') || '1', 10);
+            const totalGames = parseInt(sessionStorage.getItem('totalGames') || '0', 10);
+
+            // On sauvegarde le score final pour l'écran de victoire
+            sessionStorage.setItem('victoryScore', Number.isFinite(currentIndex) ? currentIndex : 0);
+            sessionStorage.setItem('victoryTotal', Number.isFinite(totalGames) ? totalGames : 0);
+
+            // On nettoie la session comme dans onLose
+            sessionStorage.removeItem('remainingGames'); 
+            sessionStorage.removeItem('totalGames');
+            sessionStorage.removeItem('currentGameIndex');
+
+            // Redirection vers la page Victoire
+            this.redirectToRoot('index.html'); 
         } else {
+            // --- CONTINUER LE JEU ---
             let currentIndex = parseInt(sessionStorage.getItem('currentGameIndex') || 1);
             sessionStorage.setItem('currentGameIndex', currentIndex + 1);
 
@@ -60,7 +67,6 @@ const GameManager = {
         sessionStorage.removeItem('remainingGames'); 
         sessionStorage.removeItem('totalGames');
         sessionStorage.removeItem('currentGameIndex');
-
         this.redirectToRoot('Defaite/defaite.html');
     },
 

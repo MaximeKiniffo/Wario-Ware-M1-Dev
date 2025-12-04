@@ -201,27 +201,26 @@ function endGame(resultText) {
     clearInterval(timerInterval);
     document.removeEventListener('keydown', handleKeyPress);
     
+    // Détermine si le joueur a gagné (au moins 1 séquence complétée)
+    const hasWon = score >= 1;
+    
     // Affichage des résultats dans l'overlay
-    overlayTitle.textContent = `JEU TERMINÉ ! Score : ${score}`;
+    overlayTitle.textContent = hasWon ? 'GAGNÉ !' : 'PERDU !';
     overlayInstructions.innerHTML = `
-        FÉLICITATIONS ! Vous avez complété ${score} séquences.<br>
-        Le prochain micro-jeu commence dans 4 secondes.
+        Vous avez complété ${score} séquence${score > 1 ? 's' : ''}.<br>
+        Redirection en cours...
     `;
     // Révèle l'overlay
     overlay.style.display = 'flex';
     
-    // Simule la boucle: redémarrage après 4 secondes
+    // Redirection via GameManager
     setTimeout(() => {
-        // Réinitialisation de l'overlay pour les instructions du prochain tour
-        overlayTitle.textContent = `JEU : TAPEZ LA SÉQUENCE !`;
-        overlayInstructions.innerHTML = `
-            Reproduisez les touches affichées le plus vite possible.<br>
-            Une erreur réinitialise la séquence, mais ne met pas fin au jeu !<br><br>
-            Le jeu commence dans 3 secondes...
-        `;
-        // Prépare le lancement (avec l'attente initiale de 3s)
-        setTimeout(startGame, 3000); 
-    }, 4000); 
+        if (hasWon) {
+            GameManager.onWin();
+        } else {
+            GameManager.onLose();
+        }
+    }, 1700);
 }
 
 /**
@@ -230,6 +229,8 @@ function endGame(resultText) {
 window.onload = () => {
     // --- CORRECTION CLÉ : Affiche l'overlay pour l'instruction initiale ---
     overlay.style.display = 'flex';
+    
+    GameManager.displayScore();
     
     // Démarre le jeu après le temps d'instruction initial (3 secondes)
     setTimeout(startGame, 3000); 
