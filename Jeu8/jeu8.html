@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Micro-Jeu WarioWare - Mime Clavier</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="overlay">
+        <h1 id="overlay-title" class="gowun-batang-bold">JEU : TAPEZ LA SÉQUENCE !</h1>
+        <p id="overlay-instructions" class="gowun-batang-regular instructions-text">
+            Reproduisez les touches affichées le plus vite possible.<br>
+            Une erreur réinitialise la séquence, mais ne met pas fin au jeu !<br><br>
+            Le jeu commence dans 3 secondes...
+        </p>
+    </div>
+
+    <div id="game-container">
+        <div id="message-area">
+            <h1 id="instructions" class="gowun-batang-bold">TAPEZ LA SÉQUENCE !</h1>
+            <p id="timer">Temps restant : 10.00</p>
+            <p id="score">Score : 0</p>
+        </div>
+        
+        <div id="sequence-display" class="gowun-batang-regular">
+            ...
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

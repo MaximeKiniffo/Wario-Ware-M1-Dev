@@ -1,0 +1,152 @@
+/* --- Polices d'écriture importées par l'utilisateur --- */
+/* (Le lien d'importation est dans le HTML, nous n'avons pas oublié ! 😉) */
+
+/* Couleurs fournies (en tant que variables CSS pour la propreté) */
+:root {
+    /* Notre palette de couleurs spéciale WarioWare ! 🎨 */
+    --color-bg-light: #FFF1D2; /* Crème clair - La couleur du papier toilette neuf (très important) */
+    --color-bg-dark: #8E3F38;  /* Marron foncé / Brique - Le goût du chocolat amer 🍫 */
+    --color-accent: #EC6A5F;   /* Corail / Rouge-orange - Le feu de l'action ! 🔥 */
+    --color-text-dark: #6D4B27; /* Marron - Le caca de la vache (pardon) 🐄 */
+    --color-text-light: #CF5E53; /* Rouge-vif - Le sang du sacrifice (pour un bon score !) 🩸 */
+    --color-border: #B47B41;   /* Ocre / Moutarde - La couleur de la moutarde (piquante !) 🌶️ */
+}
+
+/* Styles de police spécifiques */
+.gowun-batang-regular {
+  font-family: "Gowun Batang", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.gowun-batang-bold {
+  font-family: "Gowun Batang", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+body {
+    font-family: 'Lato', sans-serif; /* Notre police principale, simple mais efficace. */
+    background-color: var(--color-bg-light); 
+    display: flex;
+    justify-content: center; /* Centrage horizontal parfait. Comme un chef ! 🧑‍🍳 */
+    align-items: center;     /* Centrage vertical parfait. On ne se moque pas des écrans ! */
+    height: 100vh;           /* Prend toute la hauteur de l'écran. Pas de cachette ! */
+    margin: 0;
+    color: var(--color-text-dark);
+    position: relative; /* Nécessaire pour positionner l'overlay (l'écran de cinéma) */
+}
+
+#game-container {
+    /* Le 'plateau' de jeu : notre vieille console portable ! 🕹️ */
+    width: 90vw;
+    max-width: 700px;
+    height: 80vh;
+    background-color: white;
+    border: 8px solid var(--color-border); /* Une bonne grosse bordure pour le style */
+    border-radius: 15px;
+    box-shadow: 10px 10px 0 var(--color-bg-dark); /* L'effet "WAOUH" 3D rétro ! 💾 */
+    position: relative; 
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column; /* Les éléments s'empilent ! 🥞 */
+    align-items: center;
+    justify-content: space-around; /* Un peu d'espace pour respirer ! 🌬️ */
+}
+
+#message-area {
+    /* La zone de la tête d'affiche (titres, temps, score) 📢 */
+    width: 100%;
+    text-align: center;
+    padding: 15px;
+    background-color: var(--color-bg-dark); /* Fond sombre, pour que ça pète ! 💥 */
+    color: var(--color-bg-light);
+    border-radius: 10px;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+#instructions {
+    color: var(--color-accent); /* La couleur qui attire l'œil (le Corail !) 👀 */
+    margin-top: 0;
+    font-size: 2em; /* Très gros, personne ne doit rater ça ! */
+}
+
+#timer, #score {
+    font-weight: bold;
+    font-size: 1.2em; /* Un peu plus petit, mais toujours important */
+    margin: 5px 0;
+}
+
+#sequence-display {
+    /* Le tableau des commandes : l'endroit le plus important ! ⌨️ */
+    font-family: monospace; /* Police de code pour le style hacker ! 🧑‍💻 */
+    font-size: 4em; /* ENORME ! */
+    font-weight: bold;
+    letter-spacing: 15px; /* De l'air entre les lettres, s'il vous plaît ! */
+    padding: 20px;
+    border: 5px dashed var(--color-text-light); /* En pointillé, car c'est éphémère ! */
+    border-radius: 10px;
+    background-color: var(--color-bg-light);
+    min-height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.key-char {
+    color: var(--color-text-dark); /* La couleur par défaut (Marron ennuyeux) */
+    transition: color 0.1s, transform 0.1s; /* Une petite animation pour le plaisir */
+}
+
+.key-char.active {
+    /* LA TOUCHE À FRAPPER ! En rouge vif et en zoom ! 🎯 */
+    color: var(--color-accent); 
+    transform: scale(1.1);
+    display: inline-block;
+}
+
+.key-char.correct {
+    color: green; /* VERT = Succès ! 🟢 */
+    text-decoration: none; /* Pas barrée, juste marquée comme validée ! */
+}
+
+/* --- Style de l'Overlay (Instructions et Fin de Jeu) --- */
+#overlay {
+    /* Le grand rideau du théâtre ! Il doit tout couvrir ! 🎭 */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw; 
+    height: 100vh;
+    background-color: rgba(142, 63, 56, 0.95); /* Un voile sombre et sérieux (mais pas trop) */
+    color: white;
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 20; /* Il est au-dessus de TOUT. NUL NE PASSERA ! 🚫 */
+    padding: 20px;
+}
+
+#overlay h1 {
+    font-size: 4em; /* ENCORE PLUS GROS, pour crier les instructions ! */
+    color: var(--color-bg-light);
+    margin-bottom: 20px;
+}
+
+.instructions-text {
+    font-size: 1.5em;
+    max-width: 600px; /* On centre et on respire */
+    line-height: 1.5;
+    color: var(--color-bg-light);
+}
+
+/* Style de fin de jeu */
+.game-over-text {
+    /* L'effet WOW pour le score final ! ✨ */
+    font-size: 2.5em !important;
+    color: var(--color-text-light) !important;
+    font-family: 'Gowun Batang', serif !important;
+}
