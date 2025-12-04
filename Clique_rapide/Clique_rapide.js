@@ -39,7 +39,7 @@ function handlePressButton() {
 }
 
 // bouge toutes les X secondes (ici 0.3 seconde)
-setInterval(bougerBouton, 300);
+setInterval(bougerBouton, 500);
 
 
 //gestion du compte à rebours 
