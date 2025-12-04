@@ -10,34 +10,117 @@
     font-style: normal;
 }
 
-.container{
-    width: 60%;
-    height: 50vh;
+body {
+    font-family: "Gowun Batang", serif;
+}
+
+/* ----- FOND GLOBAL ----- */
+.back {
+    background-color: #DAB289;
+    width: 100vw;
+    height: 100vh;
+    padding-top: 50px;
+}
+
+
+/* ----- CARTE DES CRÉDITS ----- */
+.container {
+    width: 90%;
+    height: 80vh;
 
     background-image: url("resources/background_text.png");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
 
-    margin: 0 auto;
     position: relative;
     overflow: hidden;
+    margin: 0 auto;
 
+    padding: 40px 10px 150px;  /* ⬅⬅⬅ 40px en haut */
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* on garde seulement l’alignement horizontal */
+    /* ⛔ supprimer justify-content: center */
 }
 
-.back {
-    background-color: #DAB289;
-    width: 80%;
-    height: 70vh;
-}
 
+
+/* ----- TITRE "CRÉDITS" ----- */
 .creditstxt {
     background-image: url("resources/button_red.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
 
-    width: 300px;
+    width: 1000px;
+    height: 90px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: #FFF1D2;
+    font-size: 28px;
+    
+    margin: 0 auto 30px;  /* centré + espace sous le titre */
+    margin-top: 10px;
+}
+
+.columns {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;    /* les deux colonnes commencent EN HAUT */
+    max-width: 450px;
+    width: 100%;
+    margin-top: 40px;
+    gap: 30px;
+}
+
+.right {
+    align-self: flex-start;   /* ⬅⬅⬅ force la colonne droite à rester en haut */
+}
+
+.left {
+    flex: 1;                        /* chaque colonne prend sa part */
+}
+
+/* grille 2 colonnes pour les devs */
+.dev-grid {
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 10px;
+    row-gap: 6px;
+}
+
+/* titres de catégories (tu peux garder ta règle) */
+.cat {
+    font-size: 28px;
+    color: #6D4B27;
+    margin: 5px 0 10px 0;
+}
+
+/* noms plus rapprochés et bien visibles */
+.name {
+    font-size: 18px;
+    color: #6D4B27;
+    margin: 3px 0;
+}
+
+.menu-button {
+    position: absolute;
+    bottom: 40px;          /* distance depuis le bas */
+    left: 50%;
+    transform: translateX(-50%);
+
+    background-image: url("resources/button_red.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    width: 500px;
     height: 100px;
 
     display: flex;
@@ -45,20 +128,26 @@
     align-items: center;
 
     color: #FFF1D2;
-    font-size: 2rem;
-    font-weight: bold;
+    font-size: 28px;
+    text-align: center;
 
-    margin: 0 auto;
-    border-radius: 10px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
 }
 
-.cat{
-    font-size: 36px;
-    color: #6D4B27;
+
+.menu-button:hover {
+    transform: translateX(-50%) scale(1.05);
+}
+.menu-button:active {
+    transform: scale(0.95);
 }
 
-.name{
-    font-size: 24px;
-    color:#DAB289;
+a {
+    text-decoration: none;   /* enlève la barre bleue */
+    color: inherit;          /* garde la couleur du bouton */
 }
+
+
 
