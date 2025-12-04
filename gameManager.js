@@ -2,8 +2,7 @@ const GameManager = {
     // Chemins vers les jeux
     gamesList: [
         'jeu2/jeu2.html', // Modifier selon vos chemins
-        'jeu3/jeu3.html',
-        'Jeu1/Jeu1.html'   
+        'jeu3/jeu3.html'  
     ],
 
     // Commencer le jeu depuis accueil
@@ -11,6 +10,8 @@ const GameManager = {
         sessionStorage.setItem('remainingGames', JSON.stringify(this.gamesList));
 
         sessionStorage.setItem('totalGames', this.gamesList.length);
+
+        sessionStorage.setItem('currentGameIndex', 1);
         
         this.pickNextGame(this.gamesList);
     },
@@ -58,23 +59,23 @@ const GameManager = {
         const total = sessionStorage.getItem('totalGames') || '?';
 
         const scoreDiv = document.createElement('div');
-        scoreDiv.innerText = `${current} / ${total}`;
+        scoreDiv.innerText = `Score ${current} / ${total}`;
         
         // Style CSS injecté directement via JS pour ne pas toucher à tous tes fichiers CSS
         Object.assign(scoreDiv.style, {
             position: 'absolute',
-            bottom: '20px', // En bas à droite
-            right: '20px',
-            fontSize: '3rem',
-            fontFamily: '"Gowun Batang", serif', // On reprend ta police
-            fontWeight: 'bold',
+            bottom: '30px', 
+            right: '30px',
+            fontSize: '1.5rem', // Taille moyenne
+            fontFamily: '"Gowun Batang", serif',
             color: '#FDF5E6', // Crème
-            backgroundColor: 'rgba(93, 64, 43, 0.8)', // Fond marron semi-transparent
+            backgroundColor: 'rgba(169, 131, 86, 0.9)', // Fond marron clair
+            border: '4px solid #5D402B', // Bordure marron foncé
             padding: '10px 20px',
-            borderRadius: '10px',
-            zIndex: '1000', // S'assure qu'il est au-dessus de tout
-            pointerEvents: 'none', // Pour ne pas bloquer les clics
-            boxShadow: '0 0 10px rgba(0,0,0,0.5)'
+            borderRadius: '8px', 
+            zIndex: '1000',
+            pointerEvents: 'none', 
+            boxShadow: '0 4px 6px rgba(0,0,0,0.3)'
         });
 
         document.body.appendChild(scoreDiv);
