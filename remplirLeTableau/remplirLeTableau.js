@@ -37,7 +37,8 @@ function startCountdown() {
     countdownEl.textContent = timeLeft;
 
     const timer = setInterval(() => {
-        timeLeft--;
+        timeLeft -= 0.10;
+        timeLeft = timeLeft.toFixed(2)
         countdownEl.textContent = timeLeft;
 
         if (timeLeft <= 0) {
@@ -45,7 +46,7 @@ function startCountdown() {
             lost = true;
             document.getElementById("lost").style.visibility = "visible"
         }
-    }, 1000);
+    }, 100);
 }
 
 //fonction qui se lance au chargement de la page
@@ -53,8 +54,9 @@ const onStart = () => {
     const consigne = document.getElementById("consigneView");
     setTimeout(() => {
         consigne.style.visibility = "hidden"
-
+        startCountdown()
     }, 2000)
+
 }
 
 onStart()

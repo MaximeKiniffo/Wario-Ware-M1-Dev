@@ -46,14 +46,7 @@ body {
     box-sizing: border-box;
 }
 
-#countdown {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 2rem;
-    font-weight: bold;
-    color: #8E3F38;
-}
+
 
 #lost {
     visibility: hidden;
@@ -196,4 +189,12 @@ body {
     display: flex;
     flex-direction: column;
 
+}
+
+.horizontalView {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
 }
