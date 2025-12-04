@@ -25,14 +25,28 @@ const GameManager = {
         console.log("Victoire !");
         
         let remaining = JSON.parse(sessionStorage.getItem('remainingGames'));
-        
         const currentPath = window.location.pathname; 
+        
         remaining = remaining.filter(game => !currentPath.includes(game));
 
         if (remaining.length === 0) {
-            // Redirection vers l'accueil, ou vers une page de victoire ?
-            this.redirectToRoot('Accueil/accueil.html'); 
+            // --- LOGIQUE FINALE (VICTOIRE TOTALE) ---
+            const currentIndex = parseInt(sessionStorage.getItem('currentGameIndex') || '1', 10);
+            const totalGames = parseInt(sessionStorage.getItem('totalGames') || '0', 10);
+
+            // On sauvegarde le score final pour l'écran de victoire
+            sessionStorage.setItem('victoryScore', Number.isFinite(currentIndex) ? currentIndex : 0);
+            sessionStorage.setItem('victoryTotal', Number.isFinite(totalGames) ? totalGames : 0);
+
+            // On nettoie la session comme dans onLose
+            sessionStorage.removeItem('remainingGames'); 
+            sessionStorage.removeItem('totalGames');
+            sessionStorage.removeItem('currentGameIndex');
+
+            // Redirection vers la page Victoire
+            this.redirectToRoot('Victoire/victoire.html'); 
         } else {
+            // --- CONTINUER LE JEU ---
             let currentIndex = parseInt(sessionStorage.getItem('currentGameIndex') || 1);
             sessionStorage.setItem('currentGameIndex', currentIndex + 1);
 
