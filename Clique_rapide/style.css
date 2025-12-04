@@ -69,7 +69,7 @@ body {
 }
 
 #lost {
-    /* visibility: hidden; */
+    visibility: hidden;
     background-color: #CF5E53;
     box-shadow: 0 0 10px #6D4B27;
     border: 3px solid #EC6A5F;
