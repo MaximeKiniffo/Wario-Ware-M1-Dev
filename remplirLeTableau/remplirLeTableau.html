@@ -21,12 +21,11 @@
   <body>
     <div class="header">
       <div class="headerMain">
-        <p class="gowun-batang-bold">Jeu 11 remplirTableau</p>
+        <p class="gowun-batang-bold">Remplir le Tableau</p>
         <div class="horizontalView">
-<p id="countdown">5</p>
-        <p>secondes</p>
+          <p id="countdown">5</p>
+          <p>secondes</p>
         </div>
-        
       </div>
     </div>
     <div id="gameZone">
@@ -59,12 +58,17 @@
         </div>
       </div>
     </div>
-    <div id="lost">
-      <h1>Perdu</h1>
-      <button onclick="handlePressButton()" id="boutton">
-        Retour à l'accueil
-      </button>
+    <div id="lostView">
+      <div id="lost">
+        <div class="lostMain">
+          <h1>Perdu</h1>
+          <button onclick="handlePressButton()" id="boutton">
+            Retour à l'accueil
+          </button>
+        </div>
+      </div>
     </div>
+
     <script src="./remplirLeTableau.js"></script>
   </body>
 </html>

@@ -44,7 +44,7 @@ function startCountdown() {
         if (timeLeft <= 0) {
             clearInterval(timer);
             lost = true;
-            document.getElementById("lost").style.visibility = "visible"
+            document.getElementById("lostView").style.visibility = "visible"
         }
     }, 100);
 }
