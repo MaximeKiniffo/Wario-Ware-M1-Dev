@@ -48,7 +48,6 @@ body {
     font-size: 2.5rem;
     font-weight: 700;
     color: #CF5E53;
-    text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
     animation: pulse 0.5s infinite alternate;
     z-index: 10;
 }
