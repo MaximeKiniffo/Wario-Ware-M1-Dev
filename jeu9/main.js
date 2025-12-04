@@ -27,19 +27,19 @@ function popTarget() {
     // ---- Détection bordure ----
     const margin = 40;
 
-    resetBorders(); 
+    resetBorders();
 
     if (x < margin) {
-        box.style.borderLeftColor = "#ff0000"; 
+        box.style.borderLeftColor = "#ff0000";
     }
     if (x > maxX - margin) {
-        box.style.borderRightColor = "#00aaff"; 
+        box.style.borderRightColor = "#00aaff";
     }
     if (y < margin) {
-        box.style.borderTopColor = "#00ff44"; 
+        box.style.borderTopColor = "#00ff44";
     }
     if (y > maxY - margin) {
-        box.style.borderBottomColor = "#ffaa00"; 
+        box.style.borderBottomColor = "#ffaa00";
     }
 
     const timeout = setTimeout(gameOver, speed);
@@ -53,22 +53,32 @@ function popTarget() {
         speed = Math.max(250, speed - 40);
 
         setTimeout(popTarget, 200);
+        if (score == 10) {
+            GameManager.onWin()
+
+        }
     };
 }
 
 function resetBorders() {
     box.style.borderLeftColor =
-    box.style.borderRightColor =
-    box.style.borderTopColor =
-    box.style.borderBottomColor = "#ffffff55";
+        box.style.borderRightColor =
+        box.style.borderTopColor =
+        box.style.borderBottomColor = "#ffffff55";
 }
 
 function gameOver() {
     alert("💀 Perdu ! Score final : " + score);
-    location.reload();
+    setTimeout(() => {
+        GameManager.onLose()
+    }, 1000)
+    // location.reload();
 }
 
 popTarget();
 
+window.onload = () => {
+    GameManager.displayScore()
+}
 
 
