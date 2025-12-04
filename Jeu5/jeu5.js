@@ -7,6 +7,24 @@
   const target = document.querySelector('.dropzone');
   if (!box || !container || !target) return;
 
+  // Audio de succès (joué quand le carré devient vert)
+  const successAudio = new Audio('assets/oh_yeah.wav');
+  successAudio.preload = 'auto';
+
+  // Déverrouiller la lecture audio au premier geste utilisateur
+  (function unlockAudioOnFirstGesture(){
+    function _unlock(){
+      successAudio.play().then(()=>{
+        successAudio.pause();
+        successAudio.currentTime = 0;
+      }).catch(()=>{});
+      document.removeEventListener('pointerdown', _unlock);
+      document.removeEventListener('touchstart', _unlock);
+    }
+    document.addEventListener('pointerdown', _unlock, {once:true});
+    document.addEventListener('touchstart', _unlock, {once:true});
+  })();
+
   // State
   let isDragging = false;
   let offsetX = 0;
@@ -104,14 +122,19 @@
     const yR = target.getBoundingClientRect();
     if (isFullyInside(bR, yR)) {
       box.classList.add('inside');
+      // Jouer le son de succès
+      try {
+        successAudio.currentTime = 0;
+        const p = successAudio.play();
+        if (p && p.catch) p.catch(()=>{});
+      } catch (err) {}
       // cleared any pending redirect
       if (redirectTimer) { clearTimeout(redirectTimer); redirectTimer = null; }
       cancelRedirectCountdown();
     } else {
       box.classList.remove('inside');
-      // schedule redirect in 3 seconds if user doesn't put the box inside
-      if (redirectTimer) clearTimeout(redirectTimer);
-      startRedirectCountdown(3000);
+      // Ne pas redémarrer le compte à rebours si on pose le carré en dehors
+      // Le compte à rebours initial continue de tourner
     }
   }
 
