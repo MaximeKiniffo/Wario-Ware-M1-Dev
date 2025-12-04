@@ -11,6 +11,11 @@
   let isDragging = false;
   let offsetX = 0;
   let offsetY = 0;
+  // redirect timer id (when dropped outside)
+  let redirectTimer = null;
+  // countdown element & state
+  let countdownEl = null;
+  let countdownInterval = null;
 
   // Helpers
   const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
@@ -68,6 +73,7 @@
   box.classList.add('dragging');
     try { box.setPointerCapture && box.setPointerCapture(e.pointerId); } catch (err) {}
 
+
     const r = box.getBoundingClientRect();
     offsetX = e.clientX - r.left;
     offsetY = e.clientY - r.top;
@@ -98,9 +104,66 @@
     const yR = target.getBoundingClientRect();
     if (isFullyInside(bR, yR)) {
       box.classList.add('inside');
+      // cleared any pending redirect
+      if (redirectTimer) { clearTimeout(redirectTimer); redirectTimer = null; }
+      cancelRedirectCountdown();
     } else {
       box.classList.remove('inside');
+      // schedule redirect in 3 seconds if user doesn't put the box inside
+      if (redirectTimer) clearTimeout(redirectTimer);
+      startRedirectCountdown(3000);
     }
+  }
+
+  // --- Redirect countdown UI helpers ---
+  function createCountdownEl() {
+    if (countdownEl) return countdownEl;
+    countdownEl = document.createElement('div');
+    countdownEl.className = 'countdown hidden';
+    countdownEl.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(countdownEl);
+    return countdownEl;
+  }
+
+  function startRedirectCountdown(durationMs) {
+    // clear previous timers
+    if (redirectTimer) { clearTimeout(redirectTimer); redirectTimer = null; }
+    if (countdownInterval) { clearInterval(countdownInterval); countdownInterval = null; }
+
+    const el = createCountdownEl();
+    el.classList.remove('hidden');
+    const start = performance.now();
+    const end = start + durationMs;
+
+    // update display every 100ms
+    function update() {
+      const now = performance.now();
+      const remaining = Math.max(0, end - now);
+      const seconds = Math.ceil(remaining / 1000);
+      el.textContent = seconds + 's';
+    }
+
+    update();
+    countdownInterval = setInterval(update, 100);
+
+    // schedule final redirect
+    redirectTimer = setTimeout(() => {
+      // final check before redirecting
+      const finalBR = box.getBoundingClientRect();
+      const finalYR = target.getBoundingClientRect();
+      if (!isFullyInside(finalBR, finalYR)) {
+        window.location.href = '../index.html';
+      } else {
+        // if it became inside just cancel countdown
+        cancelRedirectCountdown();
+      }
+    }, durationMs);
+  }
+
+  function cancelRedirectCountdown() {
+    if (redirectTimer) { clearTimeout(redirectTimer); redirectTimer = null; }
+    if (countdownInterval) { clearInterval(countdownInterval); countdownInterval = null; }
+    if (countdownEl) { countdownEl.classList.add('hidden'); }
   }
 
   // keyboard nudging for accessibility
@@ -117,6 +180,13 @@
 
   // Init: random placement (after layout)
   setTimeout(() => placeBothNonOverlapping(box, target), 10);
+
+  // Start a 3s countdown on page load — if the box isn't inside by then, redirect
+  // This follows the user's request to launch the countdown as soon as the page is loaded
+  window.addEventListener('load', () => {
+    // small timeout to ensure layout measurements are stable
+    setTimeout(() => startRedirectCountdown(3000), 50);
+  });
 
   // Events
   box.addEventListener('pointerdown', onPointerDown);

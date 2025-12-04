@@ -54,5 +54,22 @@ html, body { height: 100%; margin: 0; }
     box-shadow: 0 0 0 4px rgba(52,152,219,0.12);
 }
 
+/* Countdown UI shown when a redirect is pending */
+.countdown {
+    position: fixed;
+    right: 18px;
+    top: 18px;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 18px;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+.countdown.hidden { display: none; }
+
 
 
