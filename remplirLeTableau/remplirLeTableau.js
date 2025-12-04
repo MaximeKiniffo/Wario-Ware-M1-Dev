@@ -1,7 +1,7 @@
 const cubes = document.querySelectorAll("td")
 let nbcubes = 0
 let colorSelect = "green"
-let colorUnSelect = "red"
+let colorUnSelect = "#FFF1D2"
 let compteur = 0
 
 const checkCube = (cube) => {
