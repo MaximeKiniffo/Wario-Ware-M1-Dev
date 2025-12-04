@@ -392,5 +392,6 @@ canvas.addEventListener("click", () => {
 });
 
 // Lancer le jeu
+GameManager.displayScore();
 resetGame();
 requestAnimationFrame(loop);
