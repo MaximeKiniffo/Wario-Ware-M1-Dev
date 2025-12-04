@@ -1,8 +1,12 @@
 
+
+const sonClick = new Audio("assets/musicNoel.mp3");
 document.addEventListener("click", (event) => {
     // Vérifie si ce n'est pas le bouton
     if (event.target.id !== "monBouton") {
-        console.log("click sur la page");
+        sonClick.currentTime = 0; // remet au début si on clique vite
+        sonClick.play();
+        console.log("Bouton cliqué !");
         const lost = document.getElementById("maGrandMere");
         if (lost) {
             lost.style.visibility = "visible";
@@ -14,22 +18,17 @@ document.addEventListener("click", (event) => {
 });
 
 const bouton = document.getElementById("monBouton");
+const gameZone = document.getElementById("gameZone");
 
 function bougerBouton() {
-    if (!bouton) return;
+    const largeur = gameZone.clientWidth - bouton.offsetWidth;
+    const hauteur = gameZone.clientHeight - bouton.offsetHeight;
 
-    // largeur et hauteur de la fenêtre
-    const largeur = window.innerWidth - bouton.offsetWidth;
-    const hauteur = window.innerHeight - bouton.offsetHeight;
-
-    // position aléatoire
     const nouvelleGauche = Math.floor(Math.random() * largeur);
     const nouvelleHaut = Math.floor(Math.random() * hauteur);
 
-    bouton.style.position = "absolute"; // nécessaire pour le déplacement
     bouton.style.left = nouvelleGauche + "px";
     bouton.style.top = nouvelleHaut + "px";
-    bouton.style.zIndex = 9999; // toujours au-dessus
 }
 
 function handlePressButton() {
