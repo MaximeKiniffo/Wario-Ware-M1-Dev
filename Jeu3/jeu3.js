@@ -1,4 +1,3 @@
-<script src="../gameManager.js"></script>
 
 const GAME_DURATION = 10000;
 const THRESHOLD = 160; 

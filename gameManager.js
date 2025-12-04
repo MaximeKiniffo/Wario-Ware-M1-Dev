@@ -1,49 +1,47 @@
 const GameManager = {
-    // Liste de tous les jeux 
+    // Chemins vers les jeux
     gamesList: [
-        'jeu1_dossier/index.html',
-        'jeu2_dossier/game.html',
-        'jeu3/jeu3.html',
-        // mettre tous les chemins ici
+        'jeu2/jeu2.html', // Modifier selon vos chemins
+        'jeu3/jeu3.html'   
     ],
 
-    // Fonction quand le joueur gagne
+    // Commencer le jeu depuis accueil
+    startGame: function() {
+        sessionStorage.setItem('remainingGames', JSON.stringify(this.gamesList));
+        
+        this.pickNextGame(this.gamesList);
+    },
+
     onWin: function() {
-        console.log("Victoire ! Calcul du prochain jeu...");
+        console.log("Victoire !");
         
         let remaining = JSON.parse(sessionStorage.getItem('remainingGames'));
-
-        if (!remaining || remaining.length === 0) {
-             const currentPath = window.location.pathname; 
-             remaining = this.gamesList.filter(game => !currentPath.includes(game));
-        }
-
-        const currentPath = window.location.pathname;
+        
+        const currentPath = window.location.pathname; 
         remaining = remaining.filter(game => !currentPath.includes(game));
 
         if (remaining.length === 0) {
-            // Victoire, il ne reste aucun jeu
-            this.redirectToRoot('index.html'); // Ou une page de victoire ?
+            // Redirection vers l'accueil, ou vers une page de victoire ?
+            this.redirectToRoot('Accueil/accueil.html'); 
         } else {
-            // Choix random d'un jeu
-            const randomIndex = Math.floor(Math.random() * remaining.length);
-            const nextGame = remaining[randomIndex];
-            const nextRemaining = remaining.filter(g => g !== nextGame);
-            sessionStorage.setItem('remainingGames', JSON.stringify(nextRemaining));
-
-            this.redirectToRoot(nextGame);
+            sessionStorage.setItem('remainingGames', JSON.stringify(remaining));
+            this.pickNextGame(remaining);
         }
     },
 
-    // Fonction quand le joueur perd 
     onLose: function() {
-        console.log("Défaite. Retour à l'accueil.");
-        sessionStorage.removeItem('remainingGames'); // Reset progress
-        this.redirectToRoot('index.html');
+        console.log("Défaite.");
+        sessionStorage.removeItem('remainingGames'); 
+        this.redirectToRoot('Accueil/accueil.html');
+    },
+
+    pickNextGame: function(gamesArray) {
+        const randomIndex = Math.floor(Math.random() * gamesArray.length);
+        const nextGame = gamesArray[randomIndex];
+        this.redirectToRoot(nextGame);
     },
 
     redirectToRoot: function(path) {
-        // Il faut monter d'un niveau étant donné que les jeux sont dans un sous dossier
         window.location.href = '../' + path;
     }
 };
