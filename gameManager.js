@@ -5,7 +5,8 @@ const GameManager = {
         'jeu2/jeu2.html', // Modifier selon vos chemins
         'jeu3/jeu3.html',
         'jeu4/jeu4.html',
-        'jeu5/jeu.html,
+        'jeu5/jeu5.html',
+        'Jeu6/jeu6.html',
         'Jeu7/jeu7.html',
         'Jeu8/jeu8.html',
         'Jeu9/jeu9.html',
