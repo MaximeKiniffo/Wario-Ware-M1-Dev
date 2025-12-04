@@ -31,7 +31,7 @@ const GameManager = {
 
         if (remaining.length === 0) {
             // Redirection vers l'accueil, ou vers une page de victoire ?
-            this.redirectToRoot('Accueil/accueil.html'); 
+            this.redirectToRoot('index.html'); 
         } else {
             let currentIndex = parseInt(sessionStorage.getItem('currentGameIndex') || 1);
             sessionStorage.setItem('currentGameIndex', currentIndex + 1);
@@ -46,7 +46,7 @@ const GameManager = {
         sessionStorage.removeItem('remainingGames'); 
         sessionStorage.removeItem('totalGames');
         sessionStorage.removeItem('currentGameIndex');
-        this.redirectToRoot('Accueil/accueil.html');
+        this.redirectToRoot('index.html');
     },
 
     pickNextGame: function(gamesArray) {
