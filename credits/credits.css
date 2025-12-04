@@ -14,7 +14,6 @@ body {
     font-family: "Gowun Batang", serif;
 }
 
-/* ----- FOND GLOBAL ----- */
 .back {
     background-color: #DAB289;
     width: 100vw;
@@ -23,7 +22,6 @@ body {
 }
 
 
-/* ----- CARTE DES CRÉDITS ----- */
 .container {
     width: 90%;
     height: 80vh;
@@ -37,18 +35,16 @@ body {
     overflow: hidden;
     margin: 0 auto;
 
-    padding: 40px 10px 150px;  /* ⬅⬅⬅ 40px en haut */
+    padding: 40px 10px 150px;
     box-sizing: border-box;
 
     display: flex;
     flex-direction: column;
-    align-items: center;  /* on garde seulement l’alignement horizontal */
-    /* ⛔ supprimer justify-content: center */
+    align-items: center;
 }
 
 
 
-/* ----- TITRE "CRÉDITS" ----- */
 .creditstxt {
     background-image: url("resources/button_red.png");
     background-size: contain;
@@ -65,14 +61,14 @@ body {
     color: #FFF1D2;
     font-size: 28px;
     
-    margin: 0 auto 30px;  /* centré + espace sous le titre */
+    margin: 0 auto 30px;
     margin-top: 10px;
 }
 
 .columns {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;    /* les deux colonnes commencent EN HAUT */
+    align-items: flex-start;
     max-width: 450px;
     width: 100%;
     margin-top: 40px;
@@ -80,14 +76,13 @@ body {
 }
 
 .right {
-    align-self: flex-start;   /* ⬅⬅⬅ force la colonne droite à rester en haut */
+    align-self: flex-start;
 }
 
 .left {
-    flex: 1;                        /* chaque colonne prend sa part */
+    flex: 1;
 }
 
-/* grille 2 colonnes pour les devs */
 .dev-grid {
     display: grid;
     grid-template-columns: auto auto;
@@ -95,14 +90,12 @@ body {
     row-gap: 6px;
 }
 
-/* titres de catégories (tu peux garder ta règle) */
 .cat {
     font-size: 28px;
     color: #6D4B27;
     margin: 5px 0 10px 0;
 }
 
-/* noms plus rapprochés et bien visibles */
 .name {
     font-size: 18px;
     color: #6D4B27;
@@ -111,7 +104,7 @@ body {
 
 .menu-button {
     position: absolute;
-    bottom: 40px;          /* distance depuis le bas */
+    bottom: 40px;
     left: 50%;
     transform: translateX(-50%);
 
@@ -145,8 +138,8 @@ body {
 }
 
 a {
-    text-decoration: none;   /* enlève la barre bleue */
-    color: inherit;          /* garde la couleur du bouton */
+    text-decoration: none;
+    color: inherit;
 }
 
 
