@@ -1,0 +1,32 @@
+#maGrandMere {
+    visibility: hidden;
+
+    position: fixed;
+    /* reste collée à la fenêtre */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    /* largeur = 100% de la fenêtre */
+    height: 100vh;
+    /* hauteur = 100% de la fenêtre */
+    object-fit: cover;
+    /* ajuste l’image sans déformation */
+    z-index: -1;
+}
+
+#monBouton {
+    position: absolute;
+    /* nécessaire pour pouvoir le déplacer */
+    top: 50px;
+    left: 50px;
+    padding: 30px 40px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    z-index: 10
+}
+
+body {
+    background-color: red;
+}
