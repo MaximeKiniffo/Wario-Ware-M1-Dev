@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Victoire !</title>
+    <link rel="stylesheet" href="victoire.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main class="victory-screen" aria-live="polite">
+        <div class="panel">
+            <div class="badge" role="status">Félicitations !</div>
+            <div class="panel-body">
+                <p class="score-label">Tu as complété tous les jeux !</p>
+                <p class="score-label">Score Final</p>
+                <p class="score-value" id="score-value">0/0</p>
+                <div class="actions">
+                    <button class="pill-btn" id="credits-btn" type="button">Crédits</button>
+                    <button class="pill-btn" id="replay-btn" type="button">Accueil</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="victoire.js"></script>
+</body>
+</html>

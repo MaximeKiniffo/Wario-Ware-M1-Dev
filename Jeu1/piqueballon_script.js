@@ -2,6 +2,7 @@ let clickTimer = null;
 
 function startGame() {
     const instruction = document.querySelector(".instruction");
+    GameManager.displayScore();
     
     setTimeout(() => {
         instruction.classList.add("hidden");
@@ -111,6 +112,7 @@ function endGame(win) {
 
 
 window.onload = () => {
+    GameManager.displayScore();
     startGame();
     
 };

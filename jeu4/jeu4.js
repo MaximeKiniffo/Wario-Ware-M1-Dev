@@ -248,5 +248,6 @@ function gameOver(isWin) {
 
 // Démarrer le jeu au chargement
 window.addEventListener('load', () => {
+    GameManager.displayScore();
     initGame();
 });
