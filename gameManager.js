@@ -81,11 +81,23 @@ const GameManager = {
     },
 
     redirectToRoot: function (path) {
-        // Obtenir le chemin de base du site
-        const base = window.location.pathname.split('/').slice(0, -1).join('/');
+        // Obtenir le chemin de base du repository
+        // En local: pathname = "/index.html" ou "/Accueil/accueil.html"
+        // En prod: pathname = "/Wario-Ware-M1-Dev/index.html" ou "/Wario-Ware-M1-Dev/Accueil/accueil.html"
+        const pathname = window.location.pathname;
+
+        // Trouver le chemin jusqu'à la racine du projet (avant le premier dossier de jeu)
+        const parts = pathname.split('/').filter(p => p);
+
+        // Si on est dans un sous-dossier GitHub Pages, on garde le nom du repo
+        let base = '';
+        if (parts.length > 0 && !parts[0].includes('.html')) {
+            // Premier élément n'est pas un fichier = nom du repo (GitHub Pages)
+            base = '/' + parts[0];
+        }
+
         window.location.href = base + '/' + path;
     },
-
     displayScore: function() {
         const current = parseInt(sessionStorage.getItem('currentGameIndex') || '0', 10);
         const total = sessionStorage.getItem('totalGames') || '?';
