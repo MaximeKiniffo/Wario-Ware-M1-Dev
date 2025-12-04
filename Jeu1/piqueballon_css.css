@@ -1,0 +1,158 @@
+body {
+    font-family: "Gowun Batang", serif;
+}
+
+.game-container {
+    background-color: #DAB289;
+    width: 100vw;
+    height: 100vh;
+    padding-top: 50px;
+}
+
+.balloons-area {
+    width: 90%;
+    height: 80vh;
+
+    background-image: url("resources/background_text.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    padding-top: 30px;
+}
+
+
+.title-game {
+    background-image: url("resources/button_red.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    width: 300px;
+    height: 100px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: #FFF1D2;
+    font-size: 2rem;
+    font-weight: bold;
+
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+.balloon,
+.balloon-to-pop {
+    width: 70px;
+    height: 95px;
+
+    position: absolute;
+
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    animation: float 2s ease-in-out infinite alternate;
+}
+
+.balloon-to-pop {
+    background-image: url("resources/redballoons.png");
+}
+
+.balloon {
+    background-image: url("resources/greenballoon.png");
+}
+
+/* Animation flottante */
+@keyframes float {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-10px);
+    }
+}
+
+
+.win-title,
+.lose-title {
+    margin: 0;
+
+    position: absolute;
+    inset: 0;
+    width: 300px;
+    height: 120px;
+    margin: auto;
+
+    background-image: url("resources/button_red.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: #FFF1D2;
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+
+    z-index: 20;
+}
+
+
+.gowun-batang-regular {
+    font-family: "Gowun Batang", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+  
+.gowun-batang-bold {
+    font-family: "Gowun Batang", serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.instruction {
+    background-image: url("resources/button_red.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    width: 600px;
+    height: 140px;
+
+    position: absolute;         
+    top: 50%;                   
+    left: 50%;                  
+    transform: translate(-50%, -50%);
+
+    font-size: 3rem;
+    font-weight: bold;
+    color: #FFF1D2;
+    text-align: center;
+    z-index: 10;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+
+}
+
+.game-place {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}

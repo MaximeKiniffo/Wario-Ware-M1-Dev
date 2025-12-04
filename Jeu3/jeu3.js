@@ -1,4 +1,4 @@
-const GAME_DURATION = 8000;
+const GAME_DURATION = 10000;
 const THRESHOLD = 160; 
 
 let isPlaying = true;
@@ -50,11 +50,11 @@ function gameLoop() {
     timerBar.style.width = percentage + "%";
     
     if (percentage < 30) {
-        timerBar.style.backgroundColor = '#ff0000'; // Rouge
+        timerBar.style.backgroundColor = '#7B3F39'; 
     } else if (percentage < 60) {
-        timerBar.style.backgroundColor = '#ff8800'; // Orange
+        timerBar.style.backgroundColor = '#E57368'; 
     } else {
-        timerBar.style.backgroundColor = '#ff0055'; // Rose
+        timerBar.style.backgroundColor = '#A98356'; 
     }
 
     if (remaining <= 0) {
