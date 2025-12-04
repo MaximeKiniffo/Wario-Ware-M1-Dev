@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ouvre la Bonne Porte - Wario Ware</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="jeu4.css">
+</head>
+<body>
+    <div id="game-container">
+        <div id="timer-bar"></div>
+        <div id="instruction">OUVRE LA BONNE PORTE !</div>
+        
+        <div id="doors-container">
+            <div class="door" data-door="0">
+                <div class="door-frame">
+                    <div class="door-panel">
+                        <div class="door-symbol"></div>
+                        <div class="door-handle"></div>
+                        <div class="door-mark"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="door" data-door="1">
+                <div class="door-frame">
+                    <div class="door-panel">
+                        <div class="door-symbol"></div>
+                        <div class="door-handle"></div>
+                        <div class="door-mark"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="door" data-door="2">
+                <div class="door-frame">
+                    <div class="door-panel">
+                        <div class="door-symbol"></div>
+                        <div class="door-handle"></div>
+                        <div class="door-mark"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <img id="character" src="assets/wario.png" alt="Wario">
+        
+        <div id="game-over" class="hidden">
+            <div id="result-message"></div>
+        </div>
+    </div>
+    
+    <script src="../gameManager.js"></script>
+    <script src="jeu4.js"></script>
+</body>
+</html>
