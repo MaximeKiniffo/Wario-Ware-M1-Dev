@@ -188,15 +188,14 @@ function gameOver() {
     endGame();
     messageEl.textContent = 'GAME OVER! Score: ' + score;
     messageEl.style.color = '#ff6b6b';
-    
+    GameManager.onLose();
 }
 
 function victory() {
     endGame();
     messageEl.textContent = 'VICTOIRE! Score: ' + score;
     messageEl.style.color = '#4ecdc4';
-    
-    
+    GameManager.onWin();
 }
 
 function endGame() {
@@ -207,11 +206,7 @@ function endGame() {
     startBtn.style.display = 'inline-block';
     startBtn.textContent = 'REJOUER';
 }
-if(gameOver()){
-    GameManager.onLose();
-}else if(victory()){
-    GameManager.onWin();
-}
+
 startBtn.addEventListener('click', startGame);
 
 // Dessin initial
