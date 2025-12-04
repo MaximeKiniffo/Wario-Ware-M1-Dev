@@ -211,3 +211,4 @@ startBtn.addEventListener('click', startGame);
 
 // Dessin initial
 draw();
+GameManager.displayScore();
