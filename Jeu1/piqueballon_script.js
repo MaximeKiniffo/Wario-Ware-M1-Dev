@@ -39,17 +39,26 @@ function placeBalloonRandom(container, balloon) {
     const balloonWidth = balloon.offsetWidth;
     const balloonHeight = balloon.offsetHeight;
 
-    const padding = 30; // marge d'air par rapport aux bords
+    const innerRatioX = 0.7;
+    const innerRatioY = 0.7;
 
-    const maxX = containerWidth - balloonWidth - padding;
-    const maxY = containerHeight - balloonHeight - padding;
+    const innerWidth = containerWidth * innerRatioX;
+    const innerHeight = containerHeight * innerRatioY;
 
-    const x = padding + Math.random() * Math.max(0, maxX);
-    const y = padding + Math.random() * Math.max(0, maxY);
+    // on centre cette zone "interne" dans le container
+    const innerOffsetX = (containerWidth - innerWidth) / 2;
+    const innerOffsetY = (containerHeight - innerHeight) / 2;
+
+    const maxX = innerWidth - balloonWidth;
+    const maxY = innerHeight - balloonHeight;
+
+    const x = innerOffsetX + Math.random() * Math.max(0, maxX);
+    const y = innerOffsetY + Math.random() * Math.max(0, maxY);
 
     balloon.style.left = x + "px";
     balloon.style.top = y + "px";
 }
+
 
 
 
