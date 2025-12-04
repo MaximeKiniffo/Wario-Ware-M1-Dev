@@ -239,14 +239,14 @@ function gameOver(isWin) {
     setTimeout(() => {
         gameOverDiv.classList.remove('hidden');
         
-        // Redirection après 1 seconde
+        // Redirection après 1.7 secondes
         setTimeout(() => {
             if (isWin) {
-                // Si gagné -> Jeu 5
-                window.location.href = '../Jeu5/jeu5.html';
+                // Si gagné -> Jeu suivant via GameManager
+                GameManager.onWin();
             } else {
-                // Si perdu -> Accueil
-                window.location.href = '../index.html';
+                // Si perdu -> Accueil via GameManager
+                GameManager.onLose();
             }
         }, 1700);
     }, 300);
