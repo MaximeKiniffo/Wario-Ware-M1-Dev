@@ -6,6 +6,7 @@ body {
     background-color: #DAB289;
     width: 100vw;
     height: 100vh;
+    padding-top: 50px;
 }
 
 .balloons-area {
@@ -133,7 +134,7 @@ body {
     background-repeat: no-repeat;
     background-position: center;
 
-    width: 450px;          /* 🔥 important */
+    width: 600px;          /* 🔥 important */
     height: 140px;         /* 🔥 important */
 
     position: absolute;         
@@ -150,6 +151,8 @@ body {
     display: flex;           /* pour centrer le texte dans le PNG */
     align-items: center;
     justify-content: center;
+    white-space: nowrap;
+
 }
 
 .game-place {
