@@ -2,7 +2,8 @@ const GameManager = {
     // Chemins vers les jeux
     gamesList: [
         'jeu2/jeu2.html', // Modifier selon vos chemins
-        'jeu3/jeu3.html'   
+        'jeu3/jeu3.html',
+        'Jeu1/Jeu1.html'   
     ],
 
     // Commencer le jeu depuis accueil
