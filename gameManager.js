@@ -1,15 +1,15 @@
 const GameManager = {
     // Chemins vers les jeux
     gamesList: [
-        'Jeu1/jeu1.html',
+        'Jeu1/Jeu1.html',
         'jeu2/jeu2.html', // Modifier selon vos chemins
-        'jeu3/jeu3.html',
+        'Jeu3/jeu3.html',
         'jeu4/jeu4.html',
         'jeu6/jeu6.html',
         'Jeu7/jeu7.html',
         'Jeu8/jeu8.html',
         'Jeu10/jeu10.html',
-        'Jeu11/jeu11.html',
+        'Jeu11/Jeu11.html',
         'Jeu12/jeu12.html',
     ],
 
