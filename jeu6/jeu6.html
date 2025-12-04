@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Évite les Obstacles!</title>
+    <link rel="stylesheet" href="jeu6.css">
+    
+    
+</head>
+<body>
+    <div class="game-container">
+        <div class="info">
+            <span>Score: <span id="score" class="score">0</span></span>
+            <span>Temps: <span id="time" class="time">5</span>s</span>
+        </div>
+        <canvas id="gameCanvas" width="400" height="500"></canvas>
+        <button id="startBtn">JOUER</button>
+        <p id="message"></p>
+        <p class="instructions">Fleches gauche/droite ou souris pour bouger</p>
+    </div>
+    <script src="../gameManager.js"></script>
+    <script src="jeu6.js"></script>
+</body>
+</html>
