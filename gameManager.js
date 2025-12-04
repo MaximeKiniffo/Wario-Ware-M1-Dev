@@ -4,14 +4,18 @@ const GameManager = {
         'Jeu1/jeu1.html',
         'jeu2/jeu2.html', // Modifier selon vos chemins
         'jeu3/jeu3.html',
-        'jeu4/jeu4.html', 
+        'jeu4/jeu4.html',
+        'jeu6/jeu6.html',
         'Jeu7/jeu7.html',
         'Jeu8/jeu8.html',
+        'Jeu9/jeu9.html',
+        'Jeu10/jeu10.html',
+        'Jeu11/jeu11.html',
         'Jeu12/jeu12.html',
     ],
 
     // Commencer le jeu depuis accueil
-    startGame: function() {
+    startGame: function () {
         sessionStorage.setItem('remainingGames', JSON.stringify(this.gamesList));
 
         sessionStorage.setItem('totalGames', this.gamesList.length);
@@ -21,12 +25,12 @@ const GameManager = {
         this.pickNextGame(this.gamesList);
     },
 
-    onWin: function() {
+    onWin: function () {
         console.log("Victoire !");
-        
+
         let remaining = JSON.parse(sessionStorage.getItem('remainingGames'));
-        const currentPath = window.location.pathname; 
-        
+        const currentPath = window.location.pathname;
+
         remaining = remaining.filter(game => !currentPath.includes(game));
 
         // Incrémenter le score AVANT de vérifier s'il reste des jeux
@@ -43,7 +47,7 @@ const GameManager = {
             sessionStorage.setItem('victoryTotal', totalGames);
 
             // On nettoie la session comme dans onLose
-            sessionStorage.removeItem('remainingGames'); 
+            sessionStorage.removeItem('remainingGames');
             sessionStorage.removeItem('totalGames');
             sessionStorage.removeItem('currentGameIndex');
 
@@ -56,7 +60,7 @@ const GameManager = {
         }
     },
 
-    onLose: function() {
+    onLose: function () {
         console.log("Défaite.");
 
         const currentIndex = parseInt(sessionStorage.getItem('currentGameIndex') || '1', 10);
@@ -65,19 +69,19 @@ const GameManager = {
         sessionStorage.setItem('defeatScore', Number.isFinite(currentIndex) ? currentIndex : 0);
         sessionStorage.setItem('defeatTotal', Number.isFinite(totalGames) ? totalGames : 0);
 
-        sessionStorage.removeItem('remainingGames'); 
+        sessionStorage.removeItem('remainingGames');
         sessionStorage.removeItem('totalGames');
         sessionStorage.removeItem('currentGameIndex');
         this.redirectToRoot('Defaite/defaite.html');
     },
 
-    pickNextGame: function(gamesArray) {
+    pickNextGame: function (gamesArray) {
         const randomIndex = Math.floor(Math.random() * gamesArray.length);
         const nextGame = gamesArray[randomIndex];
         this.redirectToRoot(nextGame);
     },
 
-    redirectToRoot: function(path) {
+    redirectToRoot: function (path) {
         window.location.href = '../' + path;
     },
 
@@ -87,11 +91,11 @@ const GameManager = {
 
         const scoreDiv = document.createElement('div');
         scoreDiv.innerText = `Score ${current} / ${total}`;
-        
+
         // Style CSS injecté directement via JS pour ne pas toucher à tous tes fichiers CSS
         Object.assign(scoreDiv.style, {
             position: 'absolute',
-            bottom: '30px', 
+            bottom: '30px',
             right: '30px',
             fontSize: '1.5rem', // Taille moyenne
             fontFamily: '"Gowun Batang", serif',
@@ -99,9 +103,9 @@ const GameManager = {
             backgroundColor: 'rgba(169, 131, 86, 0.9)', // Fond marron clair
             border: '4px solid #5D402B', // Bordure marron foncé
             padding: '10px 20px',
-            borderRadius: '8px', 
+            borderRadius: '8px',
             zIndex: '1000',
-            pointerEvents: 'none', 
+            pointerEvents: 'none',
             boxShadow: '0 4px 6px rgba(0,0,0,0.3)'
         });
 
