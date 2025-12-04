@@ -8,6 +8,8 @@ const GameManager = {
     // Commencer le jeu depuis accueil
     startGame: function() {
         sessionStorage.setItem('remainingGames', JSON.stringify(this.gamesList));
+
+        sessionStorage.setItem('totalGames', this.gamesList.length);
         
         this.pickNextGame(this.gamesList);
     },
@@ -24,6 +26,9 @@ const GameManager = {
             // Redirection vers l'accueil, ou vers une page de victoire ?
             this.redirectToRoot('Accueil/accueil.html'); 
         } else {
+            let currentIndex = parseInt(sessionStorage.getItem('currentGameIndex') || 1);
+            sessionStorage.setItem('currentGameIndex', currentIndex + 1);
+
             sessionStorage.setItem('remainingGames', JSON.stringify(remaining));
             this.pickNextGame(remaining);
         }
@@ -32,6 +37,8 @@ const GameManager = {
     onLose: function() {
         console.log("Défaite.");
         sessionStorage.removeItem('remainingGames'); 
+        sessionStorage.removeItem('totalGames');
+        sessionStorage.removeItem('currentGameIndex');
         this.redirectToRoot('Accueil/accueil.html');
     },
 
@@ -43,5 +50,32 @@ const GameManager = {
 
     redirectToRoot: function(path) {
         window.location.href = '../' + path;
+    },
+
+    displayScore: function() {
+        const current = sessionStorage.getItem('currentGameIndex') || 1;
+        const total = sessionStorage.getItem('totalGames') || '?';
+
+        const scoreDiv = document.createElement('div');
+        scoreDiv.innerText = `${current} / ${total}`;
+        
+        // Style CSS injecté directement via JS pour ne pas toucher à tous tes fichiers CSS
+        Object.assign(scoreDiv.style, {
+            position: 'absolute',
+            bottom: '20px', // En bas à droite
+            right: '20px',
+            fontSize: '3rem',
+            fontFamily: '"Gowun Batang", serif', // On reprend ta police
+            fontWeight: 'bold',
+            color: '#FDF5E6', // Crème
+            backgroundColor: 'rgba(93, 64, 43, 0.8)', // Fond marron semi-transparent
+            padding: '10px 20px',
+            borderRadius: '10px',
+            zIndex: '1000', // S'assure qu'il est au-dessus de tout
+            pointerEvents: 'none', // Pour ne pas bloquer les clics
+            boxShadow: '0 0 10px rgba(0,0,0,0.5)'
+        });
+
+        document.body.appendChild(scoreDiv);
     }
 };

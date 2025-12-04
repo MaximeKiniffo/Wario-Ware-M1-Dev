@@ -115,4 +115,6 @@ window.addEventListener('resize', () => {
     }
 });
 
+GameManager.displayScore();
+
 startGame();
