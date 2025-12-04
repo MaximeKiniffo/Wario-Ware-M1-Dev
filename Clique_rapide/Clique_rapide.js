@@ -19,23 +19,47 @@ document.addEventListener("click", (event) => {
 
 const bouton = document.getElementById("monBouton");
 const gameZone = document.getElementById("gameZone");
-
+let lost = false
 function bougerBouton() {
-    const largeur = gameZone.clientWidth - bouton.offsetWidth;
-    const hauteur = gameZone.clientHeight - bouton.offsetHeight;
+    if (!lost) {
+        const largeur = gameZone.clientWidth - bouton.offsetWidth;
+        const hauteur = gameZone.clientHeight - bouton.offsetHeight;
 
-    const nouvelleGauche = Math.floor(Math.random() * largeur);
-    const nouvelleHaut = Math.floor(Math.random() * hauteur);
+        const nouvelleGauche = Math.floor(Math.random() * largeur);
+        const nouvelleHaut = Math.floor(Math.random() * hauteur);
 
-    bouton.style.left = nouvelleGauche + "px";
-    bouton.style.top = nouvelleHaut + "px";
+        bouton.style.left = nouvelleGauche + "px";
+        bouton.style.top = nouvelleHaut + "px";
+    }
 }
 
 function handlePressButton() {
     // redirection correcte
     window.location.href = "/";
-    console.log("asasa");
 }
 
-// bouge toutes les X secondes (ici 1 seconde)
+// bouge toutes les X secondes (ici 0.3 seconde)
 setInterval(bougerBouton, 300);
+
+
+//gestion du compte à rebours 
+function startCountdown() {
+    let timeLeft = 5; // 5 secondes
+    const countdownEl = document.getElementById("countdown");
+
+    countdownEl.textContent = timeLeft;
+
+    const timer = setInterval(() => {
+        timeLeft--;
+        countdownEl.textContent = timeLeft;
+
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            lost = true;
+            document.getElementById("lost").style.visibility = "visible"
+        }
+    }, 1000);
+}
+
+// Démarre le compte à rebours dès le chargement
+window.onload = startCountdown;
