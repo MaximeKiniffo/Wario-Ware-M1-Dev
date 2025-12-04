@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="jeu10.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="gameZone">
+      <div id="countdown">5</div>
+      <button onclick="handlePressButton()" id="monBouton">Clique-moi</button>
+    </div>
+    <img
+      id="maGrandMere"
+      src="https://tse2.mm.bing.net/th/id/OIP.x39hJQlrcH9PNi4Dp_7F7gHaFH?rs=1&pid=ImgDetMain&o=7&rm=3"
+    />
+
+    <div id="lost">
+      <h1>Perdu</h1>
+      <button onclick="handlePressButton()" id="boutton">
+        Retour à l'accueil
+      </button>
+    </div>
+    <script src="./jeu10.js"></script>
+  </body>
+</html>

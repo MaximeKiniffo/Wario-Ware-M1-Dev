@@ -1,5 +1,3 @@
-
-
 const sonClick = new Audio("assets/musicNoel.mp3");
 document.addEventListener("click", (event) => {
     // Vérifie si ce n'est pas le bouton
@@ -19,7 +17,7 @@ document.addEventListener("click", (event) => {
 
 const bouton = document.getElementById("monBouton");
 const gameZone = document.getElementById("gameZone");
-let lost = false
+let lost = false;
 function bougerBouton() {
     if (!lost) {
         const largeur = gameZone.clientWidth - bouton.offsetWidth;
@@ -41,8 +39,7 @@ function handlePressButton() {
 // bouge toutes les X secondes (ici 0.3 seconde)
 setInterval(bougerBouton, 500);
 
-
-//gestion du compte à rebours 
+//gestion du compte à rebours
 function startCountdown() {
     let timeLeft = 5; // 5 secondes
     const countdownEl = document.getElementById("countdown");
@@ -56,7 +53,10 @@ function startCountdown() {
         if (timeLeft <= 0) {
             clearInterval(timer);
             lost = true;
-            document.getElementById("lost").style.visibility = "visible"
+            document.getElementById("lost").style.visibility = "visible";
+            setTimeout(() => {
+                window.location.href = "/";
+            }, 2000);
         }
     }, 1000);
 }
