@@ -33,7 +33,7 @@ body {
     /* cache ce qui dépasse */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
     top: -50px;
-    z-index: 1;
+    z-index: 0;
 }
 
 #gameZoneMain {
@@ -45,11 +45,6 @@ body {
     padding: 10px;
     box-sizing: border-box;
 }
-
-
-
-
-
 
 #countdown {
     position: absolute;
@@ -108,7 +103,7 @@ body {
     border-radius: 10px;
     position: relative;
     margin: 0;
-    z-index: 2;
+    z-index: 1;
     width: 80vw;
     margin: auto;
     margin-top: 20px;
@@ -136,4 +131,49 @@ body {
     font-weight: 700;
     font-style: normal;
     font-size: 32px;
+}
+
+#consigne {
+    z-index: 100;
+
+    width: 70vw;
+    /* largeur fixe */
+    /* hauteur fixe */
+    /* centre horizontalement avec un espace en haut */
+    border: 5px solid #8E3F38;
+    border-radius: 12px;
+    background-color: #FFF1D2;
+    overflow: hidden;
+    /* cache ce qui dépasse */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    z-index: 1;
+    margin: auto auto;
+
+
+}
+
+#consigneMain {
+    border: 10px solid #B47B41;
+    background-color: #FFF1D2;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 36;
+    text-align: center;
+
+
+}
+
+.background {
+    visibility: visible;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0 0 0 / 0.81);
+    z-index: 1;
+    top: 0;
+    align-items: center;
+    align-self: center;
+    align-content: center;
 }

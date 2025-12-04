@@ -30,3 +30,13 @@ const onWin = () => {
     window.location.href = "/"
 }
 
+//fonction qui se lance au chargement de la page
+const onStart = () => {
+    const consigne = document.getElementById("consigneView");
+    setTimeout(() => {
+        consigne.style.visibility = "hidden"
+
+    }, 2000)
+}
+
+onStart()
