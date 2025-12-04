@@ -3,7 +3,7 @@
 const sonClick = new Audio("assets/musicNoel.mp3");
 document.addEventListener("click", (event) => {
     // Vérifie si ce n'est pas le bouton
-    if (event.target.id !== "monBouton") {
+    if (event.target.id !== "monBouton" && event.target.id !== "lost") {
         sonClick.currentTime = 0; // remet au début si on clique vite
         sonClick.play();
         console.log("Bouton cliqué !");
