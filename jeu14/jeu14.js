@@ -425,6 +425,7 @@
 
 
 	generateAndDrawMaze();
+	GameManager.displayScore();
 
 	window.addEventListener('pointermove', onPointerMove, {passive:true});
 	window.addEventListener('touchmove', onPointerMove, {passive:true});
