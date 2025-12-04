@@ -124,10 +124,6 @@ body {
 }
 
 .instruction {
-    background-image: url("resources/button_red.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
 
     width: 600px;
     height: 140px;
@@ -137,9 +133,9 @@ body {
     left: 50%;                  
     transform: translate(-50%, -50%);
 
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: bold;
-    color: #FFF1D2;
+    color:#6D4B27;
     text-align: center;
     z-index: 10;
 
