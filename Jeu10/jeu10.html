@@ -15,19 +15,24 @@
   <body>
     <div id="gameZone">
       <div id="countdown">5</div>
-      <button onclick="handlePressButton()" id="monBouton">Clique-moi</button>
+      <button onclick="handlePressWin()" id="monBouton">Clique-moi</button>
     </div>
     <img
       id="maGrandMere"
       src="https://tse2.mm.bing.net/th/id/OIP.x39hJQlrcH9PNi4Dp_7F7gHaFH?rs=1&pid=ImgDetMain&o=7&rm=3"
     />
 
-    <div id="lost">
+    <div class="status" id="lost">
+      <div class="statusMain" id="winMain">
       <h1>Perdu</h1>
-      <button onclick="handlePressButton()" id="boutton">
-        Retour à l'accueil
-      </button>
-</div>
-    <script src="./jeu10.js"></script><script src="../gameManager.js"></script>
+      </div>
+    </div>
+    <div class="status" id="win">
+      <div class="statusMain" id="winMain">
+        <h1>Gagné</h1>
+      </div>
+    </div>
+    <script src="./jeu10.js"></script>
+    <script src="../gameManager.js"></script>
   </body>
 </html>
