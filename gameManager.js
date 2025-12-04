@@ -23,7 +23,7 @@ const GameManager = {
 
         sessionStorage.setItem('totalGames', this.gamesList.length);
 
-        sessionStorage.setItem('currentGameIndex', 1);
+        sessionStorage.setItem('currentGameIndex', 0);
         
         this.pickNextGame(this.gamesList);
     },
