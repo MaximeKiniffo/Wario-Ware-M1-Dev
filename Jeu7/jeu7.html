@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casse la Brique</title>
+    <link rel="stylesheet" href="jeu7.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main class="game-wrapper">
+        <header class="game-header">
+            <div class="title-container">
+                <h1 class="game-title">Casse la Brique</h1>
+            </div>
+            <div class="timer-display" id="timerDisplay">6.0s</div>
+        </header>
+
+        <section class="instructions">
+            <p class="instruction-text">Clique sur la boule, tire pour viser, relâche pour lancer !</p>
+        </section>
+
+        <div class="canvas-container">
+            <canvas id="gameCanvas" width="600" height="400"></canvas>
+            <div class="status-message" id="statusMessage"></div>
+        </div>
+    </main>
+
+    <script src="../gameManager.js"></script>
+    <script src="jeu7.js"></script>
+</body>
+</html>
