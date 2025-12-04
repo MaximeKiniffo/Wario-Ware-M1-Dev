@@ -5,16 +5,9 @@ const GameManager = {
         'jeu2/jeu2.html', // Modifier selon vos chemins
         'jeu3/jeu3.html',
         'jeu4/jeu4.html', 
-        'Jeu5/jeu5.html',
-        'jeu6/jeu6.html',
         'Jeu7/jeu7.html',
         'Jeu8/jeu8.html',
-        'Jeu9/jeu9.html',
-        'Jeu10/jeu10.html',
-        'Jeu11/jeu11.html',
         'Jeu12/jeu12.html',
-        'jeu13/jeu13.html',
-        'jeu14/jeu14.html' 
     ],
 
     // Commencer le jeu depuis accueil
