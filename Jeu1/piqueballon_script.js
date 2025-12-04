@@ -109,6 +109,7 @@ function endGame(win) {
     balloons.forEach(b => b.remove());
 }
 
+
 window.onload = () => {
     startGame();
     
