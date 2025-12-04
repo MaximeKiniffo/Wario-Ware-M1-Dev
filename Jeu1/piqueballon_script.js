@@ -1,5 +1,3 @@
-let balloons = [];
-let correctBalloon = null;
 let clickTimer = null;
 
 function startGame() {
@@ -11,43 +9,71 @@ function startGame() {
     }, 2000);
 }
 
-function createBalloon(container, maxX, maxY){
+function createBalloonGeneric(container, className, clickHandler) {
     const balloon = document.createElement("div");
-        balloon.classList.add("balloon");
+    balloon.classList.add(className);
 
-        balloon.style.left = Math.random() * maxX + "px";
-        balloon.style.top = Math.random() * maxY + "px";
+    // l'ajouter d'abord pour que le CSS s'applique (taille réelle)
+    container.appendChild(balloon);
 
-        balloon.addEventListener("click", handleBadBalloonClick);
+    // le placer aléatoirement dans la zone
+    placeBalloonRandom(container, balloon);
 
-        container.appendChild(balloon);
+    if (clickHandler) {
+        balloon.addEventListener("click", clickHandler);
+    }
+
+    return balloon;
 }
 
-function createBalloonToPop(container, maxX, maxY){
-    const balloonToPop = document.createElement("div");
-    balloonToPop.classList.add("balloon-to-pop");
 
-    balloonToPop.style.left = Math.random() * maxX + "px";
-    balloonToPop.style.top = Math.random() * maxY + "px";
+function placeBalloonRandom(container, balloon) {
+    const containerWidth = container.clientWidth;
+    const containerHeight = container.clientHeight;
 
-    balloonToPop.addEventListener("click", handleGoodBalloonClick);
+    if (!containerWidth || !containerHeight) {
+        console.warn("La zone de ballons n'a pas encore de taille.");
+        return;
+    }
 
-    container.appendChild(balloonToPop); 
+    const balloonWidth = balloon.offsetWidth;
+    const balloonHeight = balloon.offsetHeight;
+
+    const padding = 30; // marge d'air par rapport aux bords
+
+    const maxX = containerWidth - balloonWidth - padding;
+    const maxY = containerHeight - balloonHeight - padding;
+
+    const x = padding + Math.random() * Math.max(0, maxX);
+    const y = padding + Math.random() * Math.max(0, maxY);
+
+    balloon.style.left = x + "px";
+    balloon.style.top = y + "px";
 }
+
+
 
 function createBalloons() {
     const container = document.querySelector(".balloons-area");
-    const maxX = container.offsetWidth - 60;  
-    const maxY = container.offsetHeight - 80;
-    for(var i = 0; i < 5 ; i++){
-        createBalloon(container, maxX, maxY);
+
+    // nettoyer les anciens ballons si besoin
+    container.querySelectorAll(".balloon, .balloon-to-pop").forEach(b => b.remove());
+
+    // mauvais ballons
+    for (let i = 0; i < 5; i++) {
+        createBalloonGeneric(container, "balloon", handleBadBalloonClick);
     }
-    createBalloonToPop(container, maxX, maxY);
+
+    // bon ballon
+    createBalloonGeneric(container, "balloon-to-pop", handleGoodBalloonClick);
+
+    // timer si tu en as un
     clickTimer = setTimeout(() => {
         endGame(false);
     }, 1500);
-    
 }
+
+
 
 function handleBadBalloonClick(event) {
     clearTimeout(clickTimer);
@@ -61,10 +87,10 @@ function handleGoodBalloonClick(event){
 
 function endGame(win) {
     if(win) {
-        winTitle = document.querySelector(".win-title");
+        let winTitle = document.querySelector(".win-title");
         winTitle.classList.remove("hidden");
     } else {
-        loseTitle = document.querySelector(".lose-title");
+        let loseTitle = document.querySelector(".lose-title");
         loseTitle.classList.remove("hidden");
     }
     const balloons = document.querySelectorAll(".balloon, .balloon-to-pop");
