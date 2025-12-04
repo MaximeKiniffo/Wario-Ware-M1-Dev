@@ -54,7 +54,10 @@ function popTarget() {
 
         setTimeout(popTarget, 200);
         if (score == 10) {
-            GameManager.onWin()
+            console.log("win")
+            setTimeout(() => {
+                GameManager.onWin()
+            }, 2000)
 
         }
     };
