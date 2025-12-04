@@ -6,6 +6,7 @@ const box = document.getElementById("game-box");
 const target = document.getElementById("target");
 const scoreDisplay = document.getElementById("score");
 
+let timeout
 function popTarget() {
     const boxRect = box.getBoundingClientRect();
 
@@ -42,7 +43,7 @@ function popTarget() {
         box.style.borderBottomColor = "#ffaa00";
     }
 
-    const timeout = setTimeout(gameOver, speed);
+    timeout = setTimeout(gameOver, speed);
 
     target.onclick = () => {
         clearTimeout(timeout);
@@ -56,8 +57,10 @@ function popTarget() {
         if (score == 10) {
             console.log("win")
             setTimeout(() => {
+                clearTimeout(timeout)
+
                 GameManager.onWin()
-            }, 2000)
+            }, 200)
 
         }
     };
@@ -74,7 +77,7 @@ function gameOver() {
     alert("💀 Perdu ! Score final : " + score);
     setTimeout(() => {
         GameManager.onLose()
-    }, 1000)
+    }, 200)
     // location.reload();
 }
 
