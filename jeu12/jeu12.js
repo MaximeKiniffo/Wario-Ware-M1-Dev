@@ -8,6 +8,29 @@
 	const WALL_COLOR = {r:207, g:94, b:83, a:255}; // #CF5E53
 	const PATH_COLOR = '#FFF1D2';
 
+	// son de succès (joué quand la sortie devient verte)
+	const SUCCESS_SOUND_SRC = 'resources/00E2_0010.wav';
+	const successAudio = new Audio(SUCCESS_SOUND_SRC);
+	successAudio.preload = 'auto';
+
+	// tentatively unlock audio playback on first user interaction (some navigateurs bloquent la lecture
+	// automatique sauf après un 'gesture' explicite). On first pointerdown/touchstart on la teste.
+	(function unlockAudioOnFirstGesture(){
+		function _unlock(){
+			// essayer de jouer puis stopper immédiatement pour débloquer l'API audio
+			successAudio.play().then(()=>{
+				successAudio.pause();
+				successAudio.currentTime = 0;
+			}).catch(()=>{
+				// si échec, on ignore ; l'audio sera tenté à l'événement de succès
+			});
+			document.removeEventListener('pointerdown', _unlock);
+			document.removeEventListener('touchstart', _unlock);
+		}
+		document.addEventListener('pointerdown', _unlock, {once:true});
+		document.addEventListener('touchstart', _unlock, {once:true});
+	})();
+
 	// ratio de pixel du périphérique pour un rendu net du canvas
 	const DPR = Math.max(1, window.devicePixelRatio || 1);
 
@@ -108,7 +131,9 @@
 					// soient proches mais conservent un petit écart visuel quel que soit l'écran
 					const minDim = Math.min(cellW, cellH);
 					const gapPx = Math.max(2, Math.min(8, Math.floor(minDim * 0.06))); // petit espace relatif
-					const radius = Math.max(6, Math.floor((minDim - gapPx) / 2));
+					// réduire légèrement le rayon pour rendre les cercles un peu plus petits
+					const radiusRaw = Math.max(6, Math.floor((minDim - gapPx) / 2));
+					const radius = Math.max(4, Math.floor(radiusRaw * 0.85));
 						// dessiner la cellule circulaire (chemin)
 					ctx.beginPath();
 					ctx.arc(cx, cy, radius, 0, Math.PI*2);
@@ -162,7 +187,8 @@
 			const cy = Math.floor(py + cellH/2);
 			const minDim = Math.min(cellW, cellH);
 			const gapPx = Math.max(2, Math.min(8, Math.floor(minDim * 0.06)));
-			const radius = Math.max(6, Math.floor((minDim - gapPx) / 2));
+			const radiusRaw = Math.max(6, Math.floor((minDim - gapPx) / 2));
+			const radius = Math.max(4, Math.floor(radiusRaw * 0.85));
 
             ctx.beginPath(); ctx.arc(cx, cy, radius, 0, Math.PI*2); ctx.fill();
 			if (c.x === 0){
@@ -374,6 +400,12 @@
 				exitReached = true;
 				ensureExitEl();
 				exitEl.classList.add('success');
+				// jouer le son de succès (si possible)
+				try {
+					successAudio.currentTime = 0;
+					const p = successAudio.play();
+					if (p && p.catch) p.catch(()=>{});
+				} catch (err) { /* ignorer les erreurs de lecture */ }
 				clearCountdown();
 				window.removeEventListener('pointermove', onPointerMove, {passive:true});
 				window.removeEventListener('touchmove', onPointerMove, {passive:true});
