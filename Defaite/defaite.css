@@ -1,0 +1,119 @@
+:root {
+    --rose-fonce: #CF5E53;
+    --rose: #EC6A5F;
+    --beige: #FFF1D2;
+    --brun-fonce: #6D4B27;
+    --brun: #B47B41;
+    --brun-clair: #DAB289;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Gowun Batang", serif;
+    background: radial-gradient(circle at 35% 20%, rgba(255, 241, 210, 0.25), transparent 45%),
+                radial-gradient(circle at 70% 80%, rgba(236, 106, 95, 0.15), transparent 40%),
+                var(--brun-clair);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+}
+
+.defeat-screen {
+    width: min(640px, 100%);
+}
+
+.panel {
+    position: relative;
+    background: var(--beige);
+    border: 5px solid var(--brun-fonce);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2), inset 0 0 0 4px var(--brun);
+    border-radius: 18px;
+    padding: 46px 32px 36px;
+    text-align: center;
+}
+
+.badge {
+    position: absolute;
+    top: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--rose-fonce);
+    color: var(--beige);
+    border: 4px solid var(--brun-fonce);
+    box-shadow: inset 0 0 0 4px var(--rose), 0 6px 12px rgba(0, 0, 0, 0.18);
+    padding: 12px 32px;
+    border-radius: 12px;
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+.panel-body {
+    margin-top: 8px;
+}
+
+.score-label {
+    margin: 18px 0 6px;
+    color: var(--brun-fonce);
+    font-size: 1.1rem;
+}
+
+.score-value {
+    margin: 0 0 20px;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--brun-fonce);
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.pill-btn {
+    border: 3px solid var(--brun-fonce);
+    background: var(--rose-fonce);
+    box-shadow: inset 0 0 0 4px var(--rose), 0 0px 0 rgba(0, 0, 0, 0.16);
+    color: var(--beige);
+    padding: 12px 26px;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
+}
+
+.pill-btn:active {
+    transform: translateY(3px);
+    box-shadow: inset 0 0 0 4px var(--rose), 0 6px 0 rgba(0, 0, 0, 0.18);
+}
+
+.pill-btn:focus-visible {
+    outline: 3px solid var(--brun-fonce);
+    outline-offset: 3px;
+}
+
+.pill-btn:hover {
+    filter: brightness(1.03);
+}
+
+@media (max-width: 520px) {
+    body {
+        padding: 20px;
+    }
+
+    .panel {
+        padding: 42px 22px 30px;
+    }
+
+    .score-value {
+        font-size: 2rem;
+    }
+}
