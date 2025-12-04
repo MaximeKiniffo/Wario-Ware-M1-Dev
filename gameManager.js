@@ -1,13 +1,19 @@
 const GameManager = {
     // Chemins vers les jeux
     gamesList: [
-        'Jeu1/jeu1.html',
+       'Jeu1/jeu1.html',
         'jeu2/jeu2.html', // Modifier selon vos chemins
         'jeu3/jeu3.html',
-        'jeu4/jeu4.html', 
+        'jeu4/jeu4.html',
+        'jeu5/jeu.html,
         'Jeu7/jeu7.html',
         'Jeu8/jeu8.html',
+        'Jeu9/jeu9.html',
+        'Jeu10/jeu10.html',
+        'Jeu11/jeu11.html',
         'Jeu12/jeu12.html',
+        'Jeu13/jeu13.html',
+        'Jeu14/jeu14.html',
     ],
 
     // Commencer le jeu depuis accueil
