@@ -1,0 +1,12 @@
+body {
+    background-color: white;
+}
+
+button {
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    border-width: 1px;
+    flex: 1;
+    padding: 1000px,
+}
