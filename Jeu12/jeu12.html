@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casse la Bûche - Wario Ware</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="jeu12.css">
+</head>
+<body>
+    <div id="game-container">
+        <div id="timer-bar"></div>
+        <div id="instruction">MAINTIENS POUR CHARGER !</div>
+        
+        <div id="game-area">
+            <div id="log-container">
+                <div id="log">🪵</div>
+                <div id="log-cracks" class="hidden"></div>
+            </div>
+            
+            <div id="wario-container">
+                <img id="wario" src="../Jeu4/assets/wario.png" alt="Wario">
+                <div id="axe">🪓</div>
+            </div>
+        </div>
+        
+        <div id="power-meter-container">
+            <div id="power-label">PUISSANCE</div>
+            <div id="power-meter-bg">
+                <div id="safe-zone"></div>
+                <div id="danger-zone"></div>
+                <div id="power-fill"></div>
+            </div>
+            <div id="power-percentage">0%</div>
+        </div>
+        
+        <div id="hint">Maintiens le clic pour charger, relâche entre 85% et 99% !</div>
+        
+        <div id="game-over" class="hidden">
+            <div id="result-message"></div>
+        </div>
+    </div>
+    
+    <script src="../gameManager.js"></script>
+    <script src="jeu12.js"></script>
+</body>
+</html>
