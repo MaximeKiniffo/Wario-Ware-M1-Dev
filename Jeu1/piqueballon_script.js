@@ -13,10 +13,8 @@ function createBalloonGeneric(container, className, clickHandler) {
     const balloon = document.createElement("div");
     balloon.classList.add(className);
 
-    // l'ajouter d'abord pour que le CSS s'applique (taille réelle)
     container.appendChild(balloon);
 
-    // le placer aléatoirement dans la zone
     placeBalloonRandom(container, balloon);
 
     if (clickHandler) {
@@ -45,7 +43,6 @@ function placeBalloonRandom(container, balloon) {
     const innerWidth = containerWidth * innerRatioX;
     const innerHeight = containerHeight * innerRatioY;
 
-    // on centre cette zone "interne" dans le container
     const innerOffsetX = (containerWidth - innerWidth) / 2;
     const innerOffsetY = (containerHeight - innerHeight) / 2;
 
@@ -65,18 +62,14 @@ function placeBalloonRandom(container, balloon) {
 function createBalloons() {
     const container = document.querySelector(".balloons-area");
 
-    // nettoyer les anciens ballons si besoin
     container.querySelectorAll(".balloon, .balloon-to-pop").forEach(b => b.remove());
 
-    // mauvais ballons
     for (let i = 0; i < 5; i++) {
         createBalloonGeneric(container, "balloon", handleBadBalloonClick);
     }
 
-    // bon ballon
     createBalloonGeneric(container, "balloon-to-pop", handleGoodBalloonClick);
 
-    // timer si tu en as un
     clickTimer = setTimeout(() => {
         endGame(false);
     }, 1500);

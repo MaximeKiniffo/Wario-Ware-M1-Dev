@@ -26,7 +26,6 @@ body {
 
 
 .title-game {
-
     background-image: url("resources/button_red.png");
     background-size: contain;
     background-repeat: no-repeat;
@@ -47,7 +46,6 @@ body {
     border-radius: 10px;
 }
 
-/* Ballons (vert + rouge) : style commun */
 .balloon,
 .balloon-to-pop {
     width: 70px;
@@ -55,7 +53,6 @@ body {
 
     position: absolute;
 
-    /* texture PNG */
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -63,12 +60,10 @@ body {
     animation: float 2s ease-in-out infinite alternate;
 }
 
-/* Ballon à éclater (rouge) */
 .balloon-to-pop {
     background-image: url("resources/redballoons.png");
 }
 
-/* Mauvais ballons (verts) */
 .balloon {
     background-image: url("resources/greenballoon.png");
 }
@@ -134,8 +129,8 @@ body {
     background-repeat: no-repeat;
     background-position: center;
 
-    width: 600px;          /* 🔥 important */
-    height: 140px;         /* 🔥 important */
+    width: 600px;
+    height: 140px;
 
     position: absolute;         
     top: 50%;                   
@@ -148,7 +143,7 @@ body {
     text-align: center;
     z-index: 10;
 
-    display: flex;           /* pour centrer le texte dans le PNG */
+    display: flex;
     align-items: center;
     justify-content: center;
     white-space: nowrap;
