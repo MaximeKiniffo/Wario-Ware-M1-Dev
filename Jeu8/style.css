@@ -1,0 +1,146 @@
+/* --- Polices d'écriture importées par l'utilisateur --- */
+/* (Le lien d'importation est dans le HTML) */
+
+/* Couleurs fournies (en tant que variables CSS pour la propreté) */
+:root {
+    --color-bg-light: #FFF1D2; /* Crème clair */
+    --color-bg-dark: #8E3F38;  /* Marron foncé / Brique */
+    --color-accent: #EC6A5F;   /* Corail / Rouge-orange */
+    --color-text-dark: #6D4B27; /* Marron */
+    --color-text-light: #CF5E53; /* Rouge-vif */
+    --color-border: #B47B41;   /* Ocre / Moutarde */
+}
+
+/* Styles de police spécifiques */
+.gowun-batang-regular {
+  font-family: "Gowun Batang", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.gowun-batang-bold {
+  font-family: "Gowun Batang", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: var(--color-bg-light); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: var(--color-text-dark);
+    position: relative; /* Nécessaire pour positionner l'overlay */
+}
+
+#game-container {
+    width: 90vw;
+    max-width: 700px;
+    height: 80vh;
+    background-color: white;
+    border: 8px solid var(--color-border);
+    border-radius: 15px;
+    box-shadow: 10px 10px 0 var(--color-bg-dark); 
+    position: relative; 
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#message-area {
+    width: 100%;
+    text-align: center;
+    padding: 15px;
+    background-color: var(--color-bg-dark);
+    color: var(--color-bg-light);
+    border-radius: 10px;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+#instructions {
+    color: var(--color-accent);
+    margin-top: 0;
+    font-size: 2em;
+}
+
+#timer, #score {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin: 5px 0;
+}
+
+#sequence-display {
+    font-family: monospace; 
+    font-size: 4em;
+    font-weight: bold;
+    letter-spacing: 15px;
+    padding: 20px;
+    border: 5px dashed var(--color-text-light);
+    border-radius: 10px;
+    background-color: var(--color-bg-light);
+    min-height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.key-char {
+    color: var(--color-text-dark);
+    transition: color 0.1s, transform 0.1s;
+}
+
+.key-char.active {
+    color: var(--color-accent);
+    transform: scale(1.1);
+    display: inline-block;
+}
+
+.key-char.correct {
+    color: green;
+    text-decoration: none; /* Enlève la ligne barrée pour plus de clarté */
+}
+
+/* --- Style de l'Overlay (Instructions et Fin de Jeu) --- */
+#overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* Prend toute la taille de la fenêtre visible */
+    width: 100vw; 
+    height: 100vh;
+    background-color: rgba(142, 63, 56, 0.95); /* Semi-transparent, couleur du thème */
+    color: white;
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 20; /* Toujours au-dessus de tout */
+    padding: 20px;
+}
+
+#overlay h1 {
+    font-size: 4em;
+    color: var(--color-bg-light);
+    margin-bottom: 20px;
+}
+
+.instructions-text {
+    font-size: 1.5em;
+    max-width: 600px;
+    line-height: 1.5;
+    color: var(--color-bg-light);
+}
+
+/* Style de fin de jeu */
+.game-over-text {
+    font-size: 2.5em !important;
+    color: var(--color-text-light) !important;
+    font-family: 'Gowun Batang', serif !important;
+}
