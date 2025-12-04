@@ -5,6 +5,11 @@ let powerLevel = 0;
 let isCharging = false;
 let chargeInterval;
 
+// Sons
+const clockSound = new Audio('assets/clock.mp3');
+const slapSound = new Audio('assets/slap.mp3');
+const breakSound = new Audio('assets/break.mp3');
+
 // Éléments DOM
 const powerFill = document.getElementById('power-fill');
 const powerPercentage = document.getElementById('power-percentage');
@@ -43,9 +48,15 @@ function initGame() {
     
     // Timer de 5 secondes
     if (timeoutId) clearTimeout(timeoutId);
+    
+    // Jouer le son de l'horloge
+    clockSound.currentTime = 0;
+    clockSound.play();
+    
     timeoutId = setTimeout(() => {
         if (gameActive) {
             gameActive = false;
+            clockSound.pause();
             stopCharging();
             gameOver(false, "TEMPS ÉCOULÉ !");
         }
@@ -120,12 +131,14 @@ function updatePowerMeter() {
 function attackLog(success) {
     gameActive = false;
     clearTimeout(timeoutId);
+    clockSound.pause();
     
     wario.classList.add('attacking');
     
     setTimeout(() => {
         if (success) {
             // La bûche se casse
+            breakSound.play();
             log.classList.add('broken');
             logCracks.classList.remove('hidden');
             logCracks.textContent = '💥';
@@ -144,7 +157,9 @@ function attackLog(success) {
 function warioGetsHit() {
     gameActive = false;
     clearTimeout(timeoutId);
+    clockSound.pause();
     
+    slapSound.play();
     wario.classList.add('hit');
     log.classList.add('broken');
     
