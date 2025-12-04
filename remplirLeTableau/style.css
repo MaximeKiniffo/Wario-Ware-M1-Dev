@@ -11,7 +11,7 @@ table {
 body {
     margin: 0;
     padding: 0;
-    background-color: #CF5E53;
+    background-color: #dab289;
     font-family: 'Lato', sans-serif;
     overflow: hidden;
     height: 100vh;
@@ -32,44 +32,24 @@ body {
     overflow: hidden;
     /* cache ce qui dépasse */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-    top: -20px;
+    top: -50px;
     z-index: 1;
 }
 
-
-#maGrandMere {
-    visibility: hidden;
-    position: absolute;
-    top: 0;
-    left: 0;
+#gameZoneMain {
+    /* centre horizontalement avec un espace en haut */
+    border: 10px solid #B47B41;
+    background-color: #FFF1D2;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    z-index: 0;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
-/* Bouton du jeu */
-#monBouton {
-    position: absolute;
-    top: 50px;
-    left: 50px;
-    padding: 10px 20px;
-    background-color: #8E3F38;
-    color: #FFF1D2;
-    border: 3px solid #EC6A5F;
-    border-radius: 12px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    cursor: pointer;
-    z-index: 2;
-    box-shadow: 0 0 10px #6D4B27;
-    transition: transform 0.2s ease, background-color 0.3s ease;
-}
 
-#monBouton:hover {
-    background-color: #EC6A5F;
-    transform: scale(1.05);
-}
+
+
+
 
 #countdown {
     position: absolute;
@@ -143,4 +123,17 @@ body {
     margin: 10px;
     align-items: center;
     text-align: center;
+}
+
+.gowun-batang-regular {
+    font-family: "Gowun Batang", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.gowun-batang-bold {
+    font-family: "Gowun Batang", serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 32px;
 }
