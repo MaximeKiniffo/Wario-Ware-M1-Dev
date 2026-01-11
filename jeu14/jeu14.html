@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Maze Mouse - Wario Ware</title>
+  <link rel="stylesheet" href="jeu14.css"/>
+</head>
+<body>
+  <div id="start-screen" class="start-screen">
+    <div class="start-message">Clique pour commencer</div>
+  </div>
+  <div class="board" id="board" style="display: none;">
+    <canvas id="mazeCanvas" class="maze-canvas" aria-hidden="true"></canvas>
+    <div id="safe" class="safe hidden" aria-hidden="true"></div>
+    <div id="hint" class="hint">Place ta souris / touche pour défini le point de départ</div>
+    <div id="win-screen" class="screen-overlay">GAGNÉ !</div>
+    <div id="lose-screen" class="screen-overlay">PERDU</div>
+  </div>
+  <script src="../gameManager.js"></script>
+  <script src="jeu14.js"></script>
+</body>
+</html>
